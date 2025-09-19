@@ -1,8 +1,199 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using QL_Cong_Viec.Models
+@{
+	Layout = null; ViewData["Title"] = "Tra cứu địa điểm công tác";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model SearchRequest
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8" />
+	<title>@ViewData["Title"]</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+	<div class="header-search text-white py-5" style="background-color:#05203C;">
+		<div class="container">
+			<h2 class="mb-4 text-center">Tra cứu địa điểm công tác</h2>
+			<form asp-action="Index" method="get">
+				<div class="row g-3 justify-content-center">
+					<!-- Quốc gia khởi hành -->
+					<div class="col-md-3">
+						<label class="form-label">Quốc gia khởi hành</label>
+						<select id="originCountry" name="Origin.Country" class="form-select"
+								data-selected="@(Model?.Origin?.Country ?? "")">
+						</select>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label">Tỉnh/Bang khởi hành</label>
+						<select id="originSubdivision" name="Origin.Subdivision" class="form-select"
+								data-selected="@(Model?.Origin?.Subdivision ?? "")">
+						</select>
+					</div>
+
+					<!-- Quốc gia đến -->
+					<div class="col-md-3">
+						<label class="form-label">Quốc gia đến</label>
+						<select id="destinationCountry" name="Destination.Country" class="form-select"
+								data-selected="@(Model?.Destination?.Country ?? "")">
+						</select>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label">Tỉnh/Bang đến</label>
+						<select id="destinationSubdivision" name="Destination.Subdivision" class="form-select"
+								data-selected="@(Model?.Destination?.Subdivision ?? "")">
+						</select>
+					</div>
+
+					<!-- Ngày đi -->
+					<div class="col-md-2">
+						<label class="form-label">Ngày đi</label>
+						<input type="date" class="form-control" name="DepartureDate"
+							   value="@(Model?.DepartureDate.ToString("yyyy-MM-dd") ?? "")" required />
+					</div>
+				</div>
+
+				<!-- Tuỳ chọn -->
+				<div class="d-flex justify-content-center gap-4 mt-3">
+					<div class="form-check">
+						<input type="checkbox" id="chkDistance" name="Options.IncludeDistance" class="form-check-input"
+							   value="true" @(Model?.Options?.IncludeDistance == true ? "checked" : "") />
+						<label for="chkDistance" class="form-check-label">Tra cứu khoảng cách</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" id="chkTime" name="Options.IncludeTime" class="form-check-input"
+							   value="true" @(Model?.Options?.IncludeTime == true ? "checked" : "") />
+						<label for="chkTime" class="form-check-label">Tra cứu thời gian</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" id="chkWeather" name="Options.IncludeWeather" class="form-check-input"
+							   value="true" @(Model?.Options?.IncludeWeather == true ? "checked" : "") />
+						<label for="chkWeather" class="form-check-label">Tra cứu thời tiết</label>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" id="chkCurrency" name="Options.IncludeCurrency" class="form-check-input"
+							   value="true" @(Model?.Options?.IncludeCurrency == true ? "checked" : "") />
+						<label for="chkCurrency" class="form-check-label">Tra cứu tiền tệ</label>
+					</div>
+				</div>
+
+				<!-- Button -->
+				<div class="row g-3 justify-content-center mt-3">
+					<div class="col-md-2 d-flex align-items-end">
+						<button type="submit" class="btn btn-primary w-100">Tìm kiếm</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	@if (Model != null)
+	{
+		<div class="container mt-4">
+			<h2>Kết quả tra cứu</h2>
+
+			@if (Model.Options.IncludeDistance)
+			{
+				<div class="mb-3">
+					<h4>Khoảng cách</h4>
+					@await Component.InvokeAsync("DistanceResult", new { model = Model })
+				</div>
+			}
+
+			@if (Model.Options.IncludeTime)
+			{
+				<div class="mb-3">
+					<h4>Thời gian</h4>
+					@await Component.InvokeAsync("TimeResult", new { model = Model })
+				</div>
+			}
+			@if (Model.Options.IncludeWeather)
+			{
+				<div class="mb-3">
+					<h4>Thời tiết</h4>
+					@await Component.InvokeAsync("WeatherResult", new { model = Model })
+				</div>
+			}
+			@if (Model.Options.IncludeCurrency)
+			{
+				<div class="mb-3">
+					<h4>Tiền tệ</h4>
+					@await Component.InvokeAsync("CurrencyResult", new { model = Model })
+				</div>
+			}
+		</div>
+	}
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		$(document).ready(function () {
+
+			var selectedOriginCountry = $("#originCountry").data("selected");
+			var selectedOriginSubdivision = $("#originSubdivision").data("selected");
+			var selectedDestCountry = $("#destinationCountry").data("selected");
+			var selectedDestSubdivision = $("#destinationSubdivision").data("selected");
+
+
+			$.getJSON("/home/countries", function (data) {
+				var $origin = $("#originCountry");
+				var $dest = $("#destinationCountry");
+
+				$origin.empty().append('<option value="">-- Chọn quốc gia --</option>');
+				$dest.empty().append('<option value="">-- Chọn quốc gia --</option>');
+
+
+				$.each(data.geonames, function (i, c) {
+					var originSelected = (c.geonameId == selectedOriginCountry) ? "selected" : "";
+					var destSelected = (c.geonameId == selectedDestCountry) ? "selected" : "";
+
+					$origin.append(`<option value="${c.geonameId}" ${originSelected}>${c.countryName}</option>`);
+					$dest.append(`<option value="${c.geonameId}" ${destSelected}>${c.countryName}</option>`);
+				});
+
+
+				if (selectedOriginCountry) {
+					$origin.trigger('change');
+				}
+				if (selectedDestCountry) {
+					$dest.trigger('change');
+				}
+			});
+
+			// Khi chọn quốc gia khởi hành => load subdivision
+			$("#originCountry").change(function () {
+				var geonameId = $(this).val();
+				var $sub = $("#originSubdivision");
+				$sub.empty().append('<option value="">-- Chọn tỉnh/bang --</option>');
+
+				if (geonameId) {
+					$.getJSON("/home/subdivisions/" + geonameId, function (data) {
+						$.each(data.geonames, function (i, s) {
+							var selected = (s.geonameId == selectedOriginSubdivision) ? "selected" : "";
+							$sub.append(`<option value="${s.geonameId}" ${selected}>${s.name}</option>`);
+						});
+					});
+				}
+			});
+
+			// Khi chọn quốc gia đến => load subdivision
+			$("#destinationCountry").change(function () {
+				var geonameId = $(this).val();
+				var $sub = $("#destinationSubdivision");
+				$sub.empty().append('<option value="">-- Chọn tỉnh/bang --</option>');
+
+				if (geonameId) {
+					$.getJSON("/home/subdivisions/" + geonameId, function (data) {
+						$.each(data.geonames, function (i, s) {
+							var selected = (s.geonameId == selectedDestSubdivision) ? "selected" : "";
+							$sub.append(`<option value="${s.geonameId}" ${selected}>${s.name}</option>`);
+						});
+					});
+				}
+			});
+		});
+	</script>
+</body>
+</html>
