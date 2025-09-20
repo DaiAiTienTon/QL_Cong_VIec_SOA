@@ -1,0 +1,11 @@
+﻿@model WeatherInfo
+
+<div class="card shadow-sm border-0 rounded-3 mt-3">
+    <div class="card-body">
+        <h5 class="card-title text-primary mb-3">🌤️ Thời tiết tại @Model.StationName</h5>
+        <p class="mb-1">🌡️ Nhiệt độ: <strong>@Model.Temperature °C</strong></p>
+        <p class="mb-1">💧 Độ ẩm: <strong>@Model.Humidity %</strong></p>
+        <p class="mb-1">🌍 Thời tiết: <strong>@Model.WeatherDescription</strong></p>
+        <p class="text-muted">⏰ Cập nhật: @Model.ObservationTime</p>
+    </div>
+</div>

@@ -12,8 +12,10 @@ builder.Services.AddHttpClient<AmadeusService>();
 builder.Services.AddScoped<FlightAggregatorService>();
 
 builder.Services.AddHttpClient<HotelService>();
-
-
+builder.Services.AddHttpClient<CountryService>();
+builder.Services.AddHttpClient<TimeService>();
+builder.Services.AddHttpClient<WeatherService>();
+builder.Services.AddHttpClient<CurrencyService>();
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
     {

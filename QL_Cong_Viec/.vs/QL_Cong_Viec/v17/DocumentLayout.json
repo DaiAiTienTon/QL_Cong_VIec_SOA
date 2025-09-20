@@ -1,0 +1,475 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\service\\currencyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\service\\currencyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\service\\countryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\service\\countryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\views\\shared\\components\\currencyresult\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\views\\shared\\components\\currencyresult\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\currencyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\currencyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\viewcomponents\\currencyresultviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\viewcomponents\\currencyresultviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\views\\shared\\components\\weatherresult\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\views\\shared\\components\\weatherresult\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\viewcomponents\\weatherresultviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\viewcomponents\\weatherresultviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\weatherinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\weatherinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\service\\weatherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\service\\weatherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\viewcomponents\\timeresultviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\viewcomponents\\timeresultviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\viewcomponents\\distanceresultviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\viewcomponents\\distanceresultviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\views\\shared\\components\\timeresult\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\views\\shared\\components\\timeresult\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\service\\timeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\service\\timeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\timeinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\timeinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\views\\shared\\components\\distanceresult\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\views\\shared\\components\\distanceresult\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\controllers\\lookupworklocationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\controllers\\lookupworklocationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\views\\lookupworklocation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\views\\lookupworklocation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\locationinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\locationinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\searchoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\searchoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\searchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\searchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\service\\amadeusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\service\\amadeusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\distance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\distance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Shared\\Components\\CurrencyResult\\Default.cshtml",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Views\\Shared\\Components\\CurrencyResult\\Default.cshtml",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Shared\\Components\\CurrencyResult\\Default.cshtml",
+              "RelativeToolTip": "QL_Cong_Viec\\Views\\Shared\\Components\\CurrencyResult\\Default.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-19T16:55:29.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CurrencyInfo.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\CurrencyInfo.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\CurrencyInfo.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\CurrencyInfo.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\CurrencyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T16:54:43.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CurrencyResultViewComponent.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ViewComponents\\CurrencyResultViewComponent.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\ViewComponents\\CurrencyResultViewComponent.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ViewComponents\\CurrencyResultViewComponent.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\ViewComponents\\CurrencyResultViewComponent.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAUwF4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T16:54:19.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CurrencyService.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\CurrencyService.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Service\\CurrencyService.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\CurrencyService.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Service\\CurrencyService.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAcwDoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T16:51:16.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\appsettings.json",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\appsettings.json",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\appsettings.json",
+              "RelativeToolTip": "QL_Cong_Viec\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-19T16:43:23.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Shared\\Components\\WeatherResult\\Default.cshtml",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Views\\Shared\\Components\\WeatherResult\\Default.cshtml",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Shared\\Components\\WeatherResult\\Default.cshtml",
+              "RelativeToolTip": "QL_Cong_Viec\\Views\\Shared\\Components\\WeatherResult\\Default.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-19T16:42:00.902Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WeatherResultViewComponent.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ViewComponents\\WeatherResultViewComponent.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\ViewComponents\\WeatherResultViewComponent.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ViewComponents\\WeatherResultViewComponent.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\ViewComponents\\WeatherResultViewComponent.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAADwv2IAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T16:40:03.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "WeatherService.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\WeatherService.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Service\\WeatherService.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\WeatherService.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Service\\WeatherService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAADwvxoAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T16:17:45.087Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Shared\\Components\\TimeResult\\Default.cshtml",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Views\\Shared\\Components\\TimeResult\\Default.cshtml",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Shared\\Components\\TimeResult\\Default.cshtml",
+              "RelativeToolTip": "QL_Cong_Viec\\Views\\Shared\\Components\\TimeResult\\Default.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAIwAsAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-19T16:11:12.883Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TimeInfo.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\TimeInfo.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\TimeInfo.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\TimeInfo.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\TimeInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T16:03:00.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TimeResultViewComponent.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ViewComponents\\TimeResultViewComponent.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\ViewComponents\\TimeResultViewComponent.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ViewComponents\\TimeResultViewComponent.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\ViewComponents\\TimeResultViewComponent.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAIwFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T16:02:31.536Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TimeService.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\TimeService.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Service\\TimeService.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\TimeService.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Service\\TimeService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAA/wBkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:58:16.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Shared\\Components\\DistanceResult\\Default.cshtml",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Views\\Shared\\Components\\DistanceResult\\Default.cshtml",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Shared\\Components\\DistanceResult\\Default.cshtml",
+              "RelativeToolTip": "QL_Cong_Viec\\Views\\Shared\\Components\\DistanceResult\\Default.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-19T15:55:39.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DistanceResultViewComponent.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ViewComponents\\DistanceResultViewComponent.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\ViewComponents\\DistanceResultViewComponent.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ViewComponents\\DistanceResultViewComponent.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\ViewComponents\\DistanceResultViewComponent.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAswEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:54:28.02Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "QL_Cong_Viec\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-19T15:49:47.261Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:49:43.192Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Program.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Program.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Program.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:48:54.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\LookUpWorkLocation\\Index.cshtml",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Views\\LookUpWorkLocation\\Index.cshtml",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\LookUpWorkLocation\\Index.cshtml",
+              "RelativeToolTip": "QL_Cong_Viec\\Views\\LookUpWorkLocation\\Index.cshtml",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAowMYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-19T15:48:24.246Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "SearchOptions.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\SearchOptions.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\SearchOptions.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\SearchOptions.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\SearchOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:47:28.822Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "SearchRequest.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\SearchRequest.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\SearchRequest.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\SearchRequest.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\SearchRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:46:50.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "LookUpWorkLocationController.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Controllers\\LookUpWorkLocationController.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Controllers\\LookUpWorkLocationController.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Controllers\\LookUpWorkLocationController.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Controllers\\LookUpWorkLocationController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowBMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:44:18.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CountryService.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\CountryService.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Service\\CountryService.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\CountryService.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Service\\CountryService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAA1wEAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:42:32.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AmadeusService.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\AmadeusService.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Service\\AmadeusService.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\AmadeusService.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Service\\AmadeusService.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwDYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:39:23.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Distance.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\Distance.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\Distance.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\Distance.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\Distance.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:37:40.43Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "FlightDto.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\FlightDto.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\FlightDto.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\FlightDto.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\FlightDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:37:37.713Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "LocationInfo.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\LocationInfo.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\LocationInfo.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\LocationInfo.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\LocationInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:37:35.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Location.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\Location.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\Location.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\Location.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\Location.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:37:31.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WeatherInfo.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\WeatherInfo.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\WeatherInfo.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\WeatherInfo.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\WeatherInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:37:21.549Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
