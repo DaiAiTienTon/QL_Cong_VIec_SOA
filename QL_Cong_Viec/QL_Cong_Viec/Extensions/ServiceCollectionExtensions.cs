@@ -23,7 +23,10 @@ namespace QL_Cong_Viec.Extensions
             services.AddScoped<AmadeusServiceAdapter>();
             services.AddScoped<HotelServiceAdapter>();
             services.AddScoped<WikiServiceAdapter>();
-
+            services.AddSingleton<CountryServiceAdapter>();
+            services.AddSingleton<TimeServiceAdapter>();
+            services.AddSingleton<WeatherServiceAdapter>();
+            services.AddSingleton<CurrencyServiceAdapter>();
             // Register additional ESB services
             services.AddScoped<HealthCheckService>();
             services.AddScoped<FlightAggregatorService>();
@@ -37,12 +40,10 @@ namespace QL_Cong_Viec.Extensions
         {
             var serviceRegistry = serviceProvider.GetRequiredService<IServiceRegistry>();
             var configuration = serviceProvider.GetRequiredService<IConfiguration>();
-
             using var scope = serviceProvider.CreateScope();
             var scopedProvider = scope.ServiceProvider;
-
+            // Dùng root provider cho Singleton services
             var serviceSettings = configuration.GetSection("ServiceSettings");
-
             if (IsServiceEnabled(serviceSettings, "FlightService"))
                 serviceRegistry.RegisterService("FlightService", scopedProvider.GetRequiredService<FlightServiceAdapter>());
 
@@ -54,8 +55,15 @@ namespace QL_Cong_Viec.Extensions
 
             if (IsServiceEnabled(serviceSettings, "WikiService"))
                 serviceRegistry.RegisterService("WikiService", scopedProvider.GetRequiredService<WikiServiceAdapter>());
+            if (IsServiceEnabled(serviceSettings, "CountryService"))
+                serviceRegistry.RegisterService("CountryService", serviceProvider.GetRequiredService<CountryServiceAdapter>());
+            if (IsServiceEnabled(serviceSettings, "TimeService"))
+                serviceRegistry.RegisterService("TimeService", serviceProvider.GetRequiredService<TimeServiceAdapter>());
+            if (IsServiceEnabled(serviceSettings, "WeatherService"))
+                serviceRegistry.RegisterService("WeatherService", serviceProvider.GetRequiredService<WeatherServiceAdapter>());
+            if (IsServiceEnabled(serviceSettings, "CurrencyService"))
+                serviceRegistry.RegisterService("CurrencyService", serviceProvider.GetRequiredService<CurrencyServiceAdapter>());
         }
-
         private static bool IsServiceEnabled(IConfigurationSection serviceSettings, string serviceName)
         {
             return serviceSettings.GetSection(serviceName).GetValue<bool>("Enabled", true);

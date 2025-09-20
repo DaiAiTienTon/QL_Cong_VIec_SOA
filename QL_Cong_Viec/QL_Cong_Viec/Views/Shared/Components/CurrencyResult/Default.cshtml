@@ -1,0 +1,19 @@
+﻿@model QL_Cong_Viec.Models.Currency
+
+<div class="card shadow-sm border-0 rounded-3 mt-3">
+    <div class="card-body">
+        <h5 class="card-title text-success mb-3">
+            💱 Tỷ giá hối đoái
+        </h5>
+        <p class="mb-2">
+            1 <strong>@Model.From</strong> =
+            <span class="text-primary fw-bold">@Model.Rate.ToString("N2")</span>
+            <strong>@Model.To</strong>
+        </p>
+        <p class="text-muted mb-0">
+            📅 Ngày: @Model.Date.ToString("dd/MM/yyyy HH:mm")
+            <br />
+            🔗 Nguồn: @Model.Provider
+        </p>
+    </div>
+</div>

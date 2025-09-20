@@ -1,0 +1,50 @@
+﻿@model Weather
+
+<div class="card shadow-sm border-0 rounded-3 mt-3">
+    <div class="card-body">
+        <h5 class="card-title text-primary mb-3">
+            🌤️ Thời tiết tại @Model.StationName
+        </h5>
+        <ul class="list-unstyled fs-6">
+            <li class="mb-2">
+                <strong>⏰ Cập nhật:</strong> <span class="text-muted">@Model.ObservationTime</span>
+            </li>
+            <li class="mb-2">
+                <strong>🌡️ Nhiệt độ:</strong> <span class="text-danger">@Model.Temperature °C</span>
+            </li>
+            <li class="mb-2">
+                <strong>💧 Độ ẩm:</strong> <span class="text-info">@Model.Humidity %</span>
+            </li>
+            <li class="mb-2">
+                <strong>🌍 Thời tiết:</strong> @Model.WeatherDescription
+            </li>
+        </ul>
+
+        @if (Model.Forecast != null && Model.Forecast.Any())
+        {
+            <hr />
+            <h6 class="text-primary mb-3">📅 Dự báo 7 ngày tới</h6>
+            <div class="row row-cols-2 row-cols-md-4 g-2">
+                @foreach (var day in Model.Forecast.Take(7))
+                {
+                    <div class="col">
+                        <div class="border rounded text-center p-2 h-100">
+                            <div class="small text-muted mb-1">
+                                @DateTime.Parse(day.Date).ToString("dd/MM")
+                            </div>
+                            <div class="small mb-1">@day.WeatherDescription</div>
+                            <div class="small">
+                                <span class="text-danger fw-bold">@day.MaxTemperature°</span> /
+                                <span class="text-primary">@day.MinTemperature°</span>
+                            </div>
+                            @if (day.Precipitation > 0)
+                            {
+                                <div class="small text-info">💧 @day.Precipitation mm</div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
