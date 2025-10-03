@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using QL_Cong_Viec.Data;
 using QL_Cong_Viec.ESB.Implementation;
@@ -24,7 +25,11 @@ builder.Services.AddSession(options =>
 builder.Services.AddHttpClient<FlightService>();
 builder.Services.AddHttpClient<WikiService>();
 builder.Services.AddHttpClient<AmadeusService>();
-builder.Services.AddHttpClient<HotelService>();
+builder.Services.AddHttpClient<HotelService>()
+    .ConfigureHttpClient(client =>
+    {
+        client.Timeout = TimeSpan.FromSeconds(30);
+    });
 builder.Services.AddHttpClient<CountryService>();
 builder.Services.AddHttpClient<TimeService>();
 builder.Services.AddHttpClient<WeatherService>();
@@ -43,6 +48,11 @@ builder.Services.AddSingleton<WeatherService>();
 builder.Services.AddSingleton<CurrencyService>();
 // Add memory cache for ESB caching service
 builder.Services.AddMemoryCache();
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.Providers.Add<GzipCompressionProvider>();
+});
 
 // Add ESB Architecture
 builder.Services.AddESB(); // This extension method adds all ESB components
@@ -79,6 +89,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 // Build the application
 var app = builder.Build();
 
+app.UseResponseCompression();
 // Configure ESB after building the app
 app.Services.ConfigureESB();
 

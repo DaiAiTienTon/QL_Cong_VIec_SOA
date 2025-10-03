@@ -101,10 +101,20 @@
         box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
     }
     
-    .search-btn:hover {
+    .search-btn:hover:not(:disabled) {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
         background: linear-gradient(135deg, #0052a3 0%, #003d82 100%);
+    }
+
+    .search-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    #loading-indicator {
+        text-align: center;
+        margin-top: 20px;
     }
 
     .results-section {
@@ -315,6 +325,23 @@
     .hotel-details.show {
         display: block;
     }
+
+    #load-more-btn {
+        background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+        border: none;
+        border-radius: 12px;
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+    }
+
+    #load-more-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+    }
 </style>
 
 <div class="search-hero">
@@ -322,7 +349,7 @@
         <h1 class="search-title">Tìm khách sạn</h1>
         
         <div class="search-card">
-            <form asp-action="Index" method="post" class="mb-4">
+            <form asp-action="Index" method="post" class="mb-4" id="search-form">
                 <div class="row g-3 align-items-end">
                     <div class="col-md-3">
                         <label class="form-label">Địa điểm</label>
@@ -345,12 +372,19 @@
                         <input asp-for="Rooms" type="number" min="1" class="form-control" placeholder="Phòng" />
                     </div>
                     <div class="col-md-1 d-flex align-items-end">
-                        <button type="submit" class="search-btn w-100">
+                        <button type="submit" class="search-btn w-100" id="search-btn">
                             <span class="d-none d-md-inline">🔍</span>
                         </button>
                     </div>
                 </div>
             </form>
+            
+            <div id="loading-indicator" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Đang tìm kiếm...</span>
+                </div>
+                <p class="mt-2">Đang tìm kiếm khách sạn...</p>
+            </div>
         </div>
     </div>
 </div>
@@ -365,8 +399,15 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-lg-7">
-                    @foreach (var hotel in Model.Results.OrderBy(h => h.RankingPosition))
+                <div class="col-lg-7" id="hotel-list">
+                    @{
+                        var sortedHotels = Model.Results.OrderBy(h => h.RankingPosition).ToList();
+                        var initialLoad = sortedHotels.Take(5).ToList();
+                        var remainingHotels = sortedHotels.Skip(5).ToList();
+                        var remainingCount = remainingHotels.Count;
+                    }
+                    
+                    @foreach (var hotel in initialLoad)
                     {
                         <div class="hotel-card @(hotel.IsPreferred ? "preferred" : "")">
                             @if (hotel.IsPreferred)
@@ -464,10 +505,13 @@
                                                     <span class="hotel-info-label">ID Khách sạn</span>
                                                     <span class="hotel-info-value">@hotel.HotelId</span>
                                                 </div>
-                                                <div class="hotel-info-item">
-                                                    <span class="hotel-info-label">Quốc gia</span>
-                                                    <span class="hotel-info-value">@hotel.CountryCode.ToUpper()</span>
-                                                </div>
+                                                @if (!string.IsNullOrEmpty(hotel.CountryCode))
+                                                {
+                                                    <div class="hotel-info-item">
+                                                        <span class="hotel-info-label">Quốc gia</span>
+                                                        <span class="hotel-info-value">@hotel.CountryCode.ToUpper()</span>
+                                                    </div>
+                                                }
                                                 <div class="hotel-info-item">
                                                     <span class="hotel-info-label">Tiền tệ</span>
                                                     <span class="hotel-info-value">@hotel.Currency</span>
@@ -533,7 +577,147 @@
                             </div>
                         </div>
                     }
+
+                    @if (remainingCount > 0)
+                    {
+                        <div id="remaining-hotels" style="display: none;">
+                            @foreach (var hotel in remainingHotels)
+                            {
+                                <div class="hotel-card @(hotel.IsPreferred ? "preferred" : "")" style="display: none;">
+                                    @if (hotel.IsPreferred)
+                                    {
+                                        <div class="preferred-badge">Ưu tiên</div>
+                                    }
+                                    
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            @if (!string.IsNullOrEmpty(hotel.Image))
+                                            {
+                                                <img src="@hotel.Image" class="hotel-image" alt="@hotel.Name" id="main-img-@hotel.HotelId" />
+                                                
+                                                @if (hotel.PhotoUrls.Count > 1)
+                                                {
+                                                    <div class="hotel-image-gallery">
+                                                        @for (int i = 0; i < Math.Min(hotel.PhotoUrls.Count, 5); i++)
+                                                        {
+                                                            <img src="@hotel.PhotoUrls[i]" alt="@hotel.Name @(i+1)" 
+                                                                 onclick="changeMainImage('@hotel.HotelId', '@hotel.PhotoUrls[i]')" />
+                                                        }
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="p-3">
+                                                <h5 class="hotel-title">@hotel.Name</h5>
+                                                
+                                                @if (hotel.StarRating > 0)
+                                                {
+                                                    <div class="hotel-stars">
+                                                        @for (int i = 0; i < hotel.StarRating; i++)
+                                                        {
+                                                            <i class="fas fa-star"></i>
+                                                        }
+                                                        <span class="text-muted hotel-address"> (@hotel.StarRating sao)</span>
+                                                    </div>
+                                                }
+                                                
+                                                @if (hotel.ReviewScore > 0)
+                                                {
+                                                    <p class="hotel-review">
+                                                        @hotel.ReviewScoreWord: @hotel.ReviewScore/10 (@hotel.ReviewCount đánh giá)
+                                                    </p>
+                                                }
+                                                
+                                                @if (!string.IsNullOrEmpty(hotel.Address) && hotel.Address != "N/A")
+                                                {
+                                                    <p class="hotel-address">
+                                                        <i class="fas fa-map-marker-alt"></i> @hotel.Address
+                                                    </p>
+                                                }
+
+                                                @if (hotel.BenefitBadges.Any())
+                                                {
+                                                    <div class="benefit-badges">
+                                                        @foreach (var badge in hotel.BenefitBadges)
+                                                        {
+                                                            <span class="benefit-badge @(badge.Identifier == "Mobile Rate" ? "mobile-rate" : "")">
+                                                                @badge.Text
+                                                            </span>
+                                                        }
+                                                    </div>
+                                                }
+
+                                                @if (hotel.HasFreeCancellation)
+                                                {
+                                                    <div class="cancellation-policy">
+                                                        <i class="fas fa-check-circle"></i> Hủy phòng miễn phí
+                                                    </div>
+                                                }
+                                                
+                                                <div class="hotel-price">
+                                                    @if (hotel.StrikethroughPrice.HasValue)
+                                                    {
+                                                        <span class="hotel-price-strikethrough">@hotel.StrikethroughPrice.Value.ToString("N2") @hotel.StrikethroughPriceCurrency</span>
+                                                    }
+                                                    <strong>@hotel.Price</strong>
+                                                    @if (hotel.ExcludedPrice > 0)
+                                                    {
+                                                        <div style="font-size: 0.9rem; color: #6c757d;">
+                                                            + @hotel.ExcludedPrice.ToString("N2") @hotel.ExcludedPriceCurrency thuế & phí
+                                                        </div>
+                                                    }
+                                                </div>
+
+                                                <button class="hotel-details-toggle" onclick="toggleDetails(@hotel.HotelId)">
+                                                    Chi tiết khách sạn
+                                                </button>
+
+                                                <div class="hotel-details" id="details-@hotel.HotelId">
+                                                    <div class="hotel-info-grid">
+                                                        <div class="hotel-info-item">
+                                                            <span class="hotel-info-label">ID Khách sạn</span>
+                                                            <span class="hotel-info-value">@hotel.HotelId</span>
+                                                        </div>
+                                                        @if (!string.IsNullOrEmpty(hotel.CountryCode))
+                                                        {
+                                                            <div class="hotel-info-item">
+                                                                <span class="hotel-info-label">Quốc gia</span>
+                                                                <span class="hotel-info-value">@hotel.CountryCode.ToUpper()</span>
+                                                            </div>
+                                                        }
+                                                        <div class="hotel-info-item">
+                                                            <span class="hotel-info-label">Tiền tệ</span>
+                                                            <span class="hotel-info-value">@hotel.Currency</span>
+                                                        </div>
+                                                        <div class="hotel-info-item">
+                                                            <span class="hotel-info-label">Thứ hạng</span>
+                                                            <span class="hotel-info-value">#@hotel.RankingPosition</span>
+                                                        </div>
+                                                        @if (hotel.Latitude != 0 && hotel.Longitude != 0)
+                                                        {
+                                                            <div class="hotel-info-item">
+                                                                <span class="hotel-info-label">Tọa độ</span>
+                                                                <span class="hotel-info-value">@hotel.Latitude.ToString("F6"), @hotel.Longitude.ToString("F6")</span>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        
+                        <div class="text-center my-4">
+                            <button id="load-more-btn" class="btn btn-primary btn-lg" data-loaded="5" data-total="@Model.Results.Count">
+                                Xem thêm @remainingCount khách sạn
+                            </button>
+                        </div>
+                    }
                 </div>
+                
                 <div class="col-lg-5">
                     <div id="map" class="map-container"></div>
                 </div>
@@ -559,18 +743,62 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
     <script>
+        // Xử lý form submit với loading indicator
+        document.getElementById('search-form').addEventListener('submit', function() {
+            document.getElementById('search-btn').disabled = true;
+            document.getElementById('loading-indicator').style.display = 'block';
+        });
+
+        // Thay đổi ảnh chính của khách sạn
         function changeMainImage(hotelId, imageUrl) {
-            document.getElementById('main-img-' + hotelId).src = imageUrl;
+            const mainImg = document.getElementById('main-img-' + hotelId);
+            if (mainImg) {
+                mainImg.src = imageUrl;
+            }
         }
 
+        // Toggle hiển thị chi tiết khách sạn
         function toggleDetails(hotelId) {
             const details = document.getElementById('details-' + hotelId);
-            details.classList.toggle('show');
-            
-            const button = event.target;
-            button.textContent = details.classList.contains('show') ? 'Ẩn chi tiết' : 'Chi tiết khách sạn';
+            if (details) {
+                details.classList.toggle('show');
+                
+                const button = event.target;
+                button.textContent = details.classList.contains('show') ? 'Ẩn chi tiết' : 'Chi tiết khách sạn';
+            }
         }
 
+        // Xử lý nút "Xem thêm"
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', function() {
+                const remainingHotels = document.querySelectorAll('#remaining-hotels .hotel-card');
+                let loadedCount = parseInt(this.dataset.loaded);
+                const batchSize = 5;
+                let newlyLoaded = 0;
+                
+                for (let i = 0; i < remainingHotels.length && newlyLoaded < batchSize; i++) {
+                    if (remainingHotels[i].style.display === 'none') {
+                        remainingHotels[i].style.display = 'block';
+                        loadedCount++;
+                        newlyLoaded++;
+                    }
+                }
+                
+                this.dataset.loaded = loadedCount;
+                
+                const totalCount = parseInt(this.dataset.total);
+                const remaining = totalCount - loadedCount;
+                
+                if (remaining > 0) {
+                    this.textContent = 'Xem thêm ' + remaining + ' khách sạn';
+                } else {
+                    this.style.display = 'none';
+                }
+            });
+        }
+
+        // Khởi tạo bản đồ
         @if (Model.Results != null && Model.Results.Any())
         {
             <text>
@@ -586,41 +814,57 @@
 
                 if (validHotels.length > 0) {
                     var map = L.map('map').setView([validHotels[0].latitude, validHotels[0].longitude], 12);
+                    
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '© OpenStreetMap'
+                        attribution: '© OpenStreetMap',
+                        maxZoom: 18
                     }).addTo(map);
 
                     var bounds = [];
-                    validHotels.forEach(h => {
-                        // Create custom marker color based on hotel rating
+                    
+                    validHotels.forEach(function(h) {
+                        // Tạo màu marker dựa trên đánh giá sao
                         var markerColor = 'red';
                         if (h.starRating >= 4) markerColor = 'green';
                         else if (h.starRating >= 3) markerColor = 'orange';
 
                         var marker = L.marker([h.latitude, h.longitude]).addTo(map);
                         
-                        var popupContent = `
-                            <div style="min-width: 250px;">
-                                <b style="color:#0d6efd; font-size: 14px;">${h.name}</b><br/>
-                                ${h.starRating > 0 ? '⭐'.repeat(h.starRating) + '<br/>' : ''}
-                                <span style="color:green; font-weight: bold;">Giá: ${h.price}</span><br/>
-                                ${h.reviewScore > 0 ? `<span>${h.reviewScoreWord}: ${h.reviewScore}/10 (${h.reviewCount} đánh giá)</span><br/>` : ''}
-                                ${h.isPreferred ? '<span style="color: #28a745; font-weight: bold;">✓ Khách sạn ưu tiên</span><br/>' : ''}
-                                ${h.hasFreeCancellation ? '<span style="color: #17a2b8;">✓ Hủy phòng miễn phí</span><br/>' : ''}
-                                <small>ID: ${h.hotelId} | Thứ hạng: #${h.rankingPosition}</small>
-                            </div>
-                        `;
+                        var popupContent = '<div style="min-width: 250px;">' +
+                            '<b style="color:#0d6efd; font-size: 14px;">' + h.name + '</b><br/>';
+                        
+                        if (h.starRating > 0) {
+                            popupContent += '⭐'.repeat(h.starRating) + '<br/>';
+                        }
+                        
+                        popupContent += '<span style="color:green; font-weight: bold;">Giá: ' + h.price + '</span><br/>';
+                        
+                        if (h.reviewScore > 0) {
+                            popupContent += '<span>' + h.reviewScoreWord + ': ' + h.reviewScore + '/10 (' + h.reviewCount + ' đánh giá)</span><br/>';
+                        }
+                        
+                        if (h.isPreferred) {
+                            popupContent += '<span style="color: #28a745; font-weight: bold;">✓ Khách sạn ưu tiên</span><br/>';
+                        }
+                        
+                        if (h.hasFreeCancellation) {
+                            popupContent += '<span style="color: #17a2b8;">✓ Hủy phòng miễn phí</span><br/>';
+                        }
+                        
+                        popupContent += '<small>ID: ' + h.hotelId + ' | Thứ hạng: #' + h.rankingPosition + '</small>';
+                        popupContent += '</div>';
                         
                         marker.bindPopup(popupContent);
                         bounds.push([h.latitude, h.longitude]);
                     });
 
+                    // Fit bản đồ để hiển thị tất cả markers
                     if (bounds.length > 1) {
-                        map.fitBounds(bounds, {padding: [10, 10]});
+                        map.fitBounds(bounds, {padding: [50, 50]});
                     }
                 } else {
                     document.getElementById('map').innerHTML =
-                        '<div class="alert alert-info p-3 mt-3">Không có dữ liệu tọa độ để hiển thị bản đồ</div>';
+                        '<div class="alert alert-info p-3 mt-3" style="margin: 20px;">Không có dữ liệu tọa độ để hiển thị bản đồ</div>';
                 }
             }
             </text>

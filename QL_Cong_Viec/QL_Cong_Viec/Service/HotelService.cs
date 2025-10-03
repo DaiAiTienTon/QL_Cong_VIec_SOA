@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using QL_Cong_Viec.ViewModels;
 using System.Text.Json;
 
@@ -9,12 +10,18 @@ namespace QL_Cong_Viec.Service
         private readonly HttpClient _httpClient;
         private readonly ILogger<HotelService> _logger;
         private readonly IConfiguration _configuration;
+        private readonly IMemoryCache _cache;
 
-        public HotelService(HttpClient httpClient, ILogger<HotelService> logger, IConfiguration configuration)
+        public HotelService(
+            HttpClient httpClient,
+            ILogger<HotelService> logger,
+            IConfiguration configuration,
+            IMemoryCache cache)
         {
             _httpClient = httpClient;
             _logger = logger;
             _configuration = configuration;
+            _cache = cache;
 
             var apiKey = _configuration["RapidAPI:BookingApiKey"];
             var apiHost = _configuration["RapidAPI:BookingHost"];
@@ -29,49 +36,69 @@ namespace QL_Cong_Viec.Service
             _httpClient.DefaultRequestHeaders.Add("x-rapidapi-host", apiHost);
         }
 
-        public async Task<List<HotelResultViewModel>> SearchHotelsAsync(string location, DateTime checkIn, DateTime checkOut, int adults, int rooms)
+        public async Task<List<HotelResultViewModel>> SearchHotelsAsync(
+            string location, DateTime checkIn, DateTime checkOut, int adults, int rooms)
         {
+            // Tạo cache key
+            var cacheKey = $"hotels_{location.ToLower()}_{checkIn:yyyyMMdd}_{checkOut:yyyyMMdd}_{adults}_{rooms}";
+
+            // Kiểm tra cache
+            if (_cache.TryGetValue(cacheKey, out List<HotelResultViewModel> cachedResults))
+            {
+                _logger.LogInformation("Returning cached results for {location}", location);
+                return cachedResults;
+            }
+
             var results = new List<HotelResultViewModel>();
             try
             {
-                // Step 1: Get destination ID (unchanged)
-                var destUrl = $"https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination?query={Uri.EscapeDataString(location)}";
-                _logger.LogInformation("Calling destination API: {url}", destUrl);
+                // Step 1: Get destination ID với cache riêng
+                var destCacheKey = $"dest_{location.ToLower()}";
+                string destId;
+                string searchType;
 
-                var destResponse = await _httpClient.GetAsync(destUrl);
-                var destJson = await destResponse.Content.ReadAsStringAsync();
-                _logger.LogInformation("Destination API status: {status}", destResponse.StatusCode);
-
-                if (!destResponse.IsSuccessStatusCode)
+                if (!_cache.TryGetValue(destCacheKey, out (string id, string type) cachedDest))
                 {
-                    return new List<HotelResultViewModel>
+                    var destUrl = $"https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination?query={Uri.EscapeDataString(location)}";
+                    _logger.LogInformation("Calling destination API: {url}", destUrl);
+
+                    var destResponse = await _httpClient.GetAsync(destUrl);
+                    var destJson = await destResponse.Content.ReadAsStringAsync();
+
+                    if (!destResponse.IsSuccessStatusCode)
+                    {
+                        return new List<HotelResultViewModel>
                     {
                         new HotelResultViewModel { Name = $"API Error (Destination): {destResponse.StatusCode}", Price = "N/A" }
                     };
-                }
+                    }
 
-                var destRoot = JsonDocument.Parse(destJson).RootElement;
+                    var destRoot = JsonDocument.Parse(destJson).RootElement;
 
-                if (!destRoot.TryGetProperty("data", out var dataArray) || dataArray.ValueKind != JsonValueKind.Array || dataArray.GetArrayLength() == 0)
-                {
-                    _logger.LogWarning("No destinations found for {location}", location);
-                    return new List<HotelResultViewModel>
+                    if (!destRoot.TryGetProperty("data", out var dataArray) ||
+                        dataArray.ValueKind != JsonValueKind.Array ||
+                        dataArray.GetArrayLength() == 0)
+                    {
+                        _logger.LogWarning("No destinations found for {location}", location);
+                        return new List<HotelResultViewModel>
                     {
                         new HotelResultViewModel { Name = "Không tìm thấy địa điểm", Price = "N/A" }
                     };
-                }
+                    }
 
-                var firstItem = dataArray.EnumerateArray().FirstOrDefault();
-                if (firstItem.ValueKind == JsonValueKind.Undefined)
+                    var firstItem = dataArray.EnumerateArray().FirstOrDefault();
+                    destId = firstItem.GetProperty("dest_id").GetString();
+                    searchType = firstItem.GetProperty("search_type").GetString();
+
+                    // Cache destination ID trong 7 ngày
+                    _cache.Set(destCacheKey, (destId, searchType), TimeSpan.FromDays(7));
+                }
+                else
                 {
-                    return new List<HotelResultViewModel>
-                    {
-                        new HotelResultViewModel { Name = "Không tìm thấy địa điểm phù hợp", Price = "N/A" }
-                    };
+                    destId = cachedDest.id;
+                    searchType = cachedDest.type;
+                    _logger.LogInformation("Using cached destination ID for {location}", location);
                 }
-
-                var destId = firstItem.GetProperty("dest_id").GetString();
-                var searchType = firstItem.GetProperty("search_type").GetString();
 
                 // Step 2: Search hotels
                 var hotelUrl =
@@ -92,14 +119,13 @@ namespace QL_Cong_Viec.Service
 
                 var hotelResponse = await _httpClient.GetAsync(hotelUrl);
                 var hotelJson = await hotelResponse.Content.ReadAsStringAsync();
-                _logger.LogInformation("Hotels API status: {status}", hotelResponse.StatusCode);
 
                 if (!hotelResponse.IsSuccessStatusCode)
                 {
                     return new List<HotelResultViewModel>
-                    {
-                        new HotelResultViewModel { Name = $"API Error (Hotels): {hotelResponse.StatusCode}", Price = "N/A" }
-                    };
+                {
+                    new HotelResultViewModel { Name = $"API Error (Hotels): {hotelResponse.StatusCode}", Price = "N/A" }
+                };
                 }
 
                 var root = JsonDocument.Parse(hotelJson).RootElement;
@@ -108,8 +134,11 @@ namespace QL_Cong_Viec.Service
                     dataElement.TryGetProperty("hotels", out var hotelsArray) &&
                     hotelsArray.ValueKind == JsonValueKind.Array && hotelsArray.GetArrayLength() > 0)
                 {
-                    _logger.LogInformation("Found 'data.hotels' array with {count} items", hotelsArray.GetArrayLength());
                     ParseHotelsFromArray(hotelsArray, results);
+
+                    // Cache kết quả trong 1 giờ
+                    _cache.Set(cacheKey, results, TimeSpan.FromHours(1));
+                    _logger.LogInformation("Cached {count} hotels for {location}", results.Count, location);
                 }
                 else
                 {
@@ -117,12 +146,9 @@ namespace QL_Cong_Viec.Service
                     results.Add(new HotelResultViewModel
                     {
                         Name = $"Không tìm thấy khách sạn cho {location}",
-                        Price = "N/A",
-                        Address = "API trả về thành công nhưng không có dữ liệu khách sạn"
+                        Price = "N/A"
                     });
                 }
-
-                _logger.LogInformation("Parsed {count} hotels", results.Count);
             }
             catch (Exception ex)
             {

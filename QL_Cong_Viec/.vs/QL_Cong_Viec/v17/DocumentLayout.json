@@ -7,8 +7,44 @@
       "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\views\\hotels\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\views\\lookupworklocation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\views\\lookupworklocation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\service\\hotelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\service\\hotelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\controllers\\hotelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\controllers\\hotelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\esb\\interface\\iserviceregistry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\esb\\interface\\iserviceregistry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\esb\\implementation\\serviceregistry .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\esb\\implementation\\serviceregistry .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\esb\\implementation\\servicebus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\esb\\implementation\\servicebus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\esb\\services\\hotelserviceadapter .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\esb\\services\\hotelserviceadapter .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +54,125 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 9,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\LookUpWorkLocation\\Index.cshtml",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Views\\LookUpWorkLocation\\Index.cshtml",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\LookUpWorkLocation\\Index.cshtml",
+              "RelativeToolTip": "QL_Cong_Viec\\Views\\LookUpWorkLocation\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-03T09:49:06.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Program.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Program.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Program.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Program.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACoAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T09:35:32.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IServiceRegistry.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ESB\\Interface\\IServiceRegistry.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\ESB\\Interface\\IServiceRegistry.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ESB\\Interface\\IServiceRegistry.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\ESB\\Interface\\IServiceRegistry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T09:25:16.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ServiceRegistry .cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ESB\\Implementation\\ServiceRegistry .cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\ESB\\Implementation\\ServiceRegistry .cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ESB\\Implementation\\ServiceRegistry .cs",
+              "RelativeToolTip": "QL_Cong_Viec\\ESB\\Implementation\\ServiceRegistry .cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwDwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T09:25:08.91Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ServiceBus.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ESB\\Implementation\\ServiceBus.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\ESB\\Implementation\\ServiceBus.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ESB\\Implementation\\ServiceBus.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\ESB\\Implementation\\ServiceBus.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T09:25:02.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\appsettings.json",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\appsettings.json",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\appsettings.json",
+              "RelativeToolTip": "QL_Cong_Viec\\appsettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-03T06:27:16.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HotelsController.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Controllers\\HotelsController.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Controllers\\HotelsController.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Controllers\\HotelsController.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Controllers\\HotelsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T06:24:25.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "HotelServiceAdapter .cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ESB\\Services\\HotelServiceAdapter .cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\ESB\\Services\\HotelServiceAdapter .cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\ESB\\Services\\HotelServiceAdapter .cs",
+              "RelativeToolTip": "QL_Cong_Viec\\ESB\\Services\\HotelServiceAdapter .cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAuwEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T06:24:00.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Hotel.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\Hotel.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\Hotel.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\Hotel.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\Hotel.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAcwEAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T06:23:51.124Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,20 +181,20 @@
               "RelativeDocumentMoniker": "QL_Cong_Viec\\Views\\Hotels\\Index.cshtml",
               "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Hotels\\Index.cshtml",
               "RelativeToolTip": "QL_Cong_Viec\\Views\\Hotels\\Index.cshtml",
-              "ViewState": "AgIAAHoBAAAAAAAAAAAlwMEBAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-22T09:41:33.442Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "HotelService.cs",
               "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\HotelService.cs",
               "RelativeDocumentMoniker": "QL_Cong_Viec\\Service\\HotelService.cs",
               "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\HotelService.cs",
               "RelativeToolTip": "QL_Cong_Viec\\Service\\HotelService.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAYwFIAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAiwIkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-22T09:40:08.142Z",
               "EditorCaption": ""
