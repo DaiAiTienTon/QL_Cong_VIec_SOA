@@ -1,0 +1,23 @@
+﻿@model QL_Cong_Viec.Models.TimeInfo
+
+<div class="card shadow-sm border-0 rounded-3 mt-3">
+    <div class="card-body">
+        <h5 class="card-title text-primary mb-3">
+            🕒 Thời gian tại @Model.CountryName (@Model.CountryCode)
+        </h5>
+        <ul class="list-unstyled fs-6">
+            <li class="mb-2">
+                <strong>⏰ Giờ hiện tại:</strong> <span class="text-success">@Model.Time</span>
+            </li>
+            <li class="mb-2">
+                <strong>🌍 Múi giờ:</strong> @Model.TimezoneId (GMT @Model.GmtOffset)
+            </li>
+            <li class="mb-2">
+                <strong>🌅 Mặt trời mọc:</strong> @Model.Sunrise
+            </li>
+            <li>
+                <strong>🌇 Mặt trời lặn:</strong> @Model.Sunset
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,207 @@
+﻿@model FlightDto
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<div class="flight-detail-container">
+    <div class="flight-header">
+        <div class="status-badge">
+            <i class="fas fa-check-circle"></i> Có sẵn
+        </div>
+        <div class="flight-route">
+            <span class="airport-code">@Model.DepartureAirport</span>
+            <i class="fas fa-plane route-arrow"></i>
+            <span class="airport-code">@Model.ArrivalAirport</span>
+        </div>
+        <div class="flight-number">Chuyến bay @Model.FlightNumber</div>
+    </div>
+
+    <div class="flight-content">
+        <!-- Flight Overview -->
+        <div class="section-title">
+            <i class="fas fa-plane-departure"></i>
+            <h3>Thông tin chuyến bay</h3>
+        </div>
+        <div class="flight-info-grid">
+            <div class="info-card">
+                <i class="fas fa-hashtag info-icon"></i>
+                <div class="info-label">Số hiệu chuyến bay</div>
+                <div class="info-value">@Model.FlightNumber</div>
+                @if (!string.IsNullOrEmpty(Model.FlightIata))
+                {
+                    <div class="info-sub">IATA: @Model.FlightIata</div>
+                }
+            </div>
+
+            <div class="info-card">
+                <i class="fas fa-calendar-alt info-icon"></i>
+                <div class="info-label">Ngày bay</div>
+                <div class="info-value">
+                    @if (!string.IsNullOrEmpty(Model.FlightDate))
+                    {
+                        @Model.FlightDate
+                    }
+                    else
+                    {
+                        <span class="text-muted">Không có</span>
+                    }
+                </div>
+            </div>
+
+            <div class="info-card">
+                <i class="fas fa-building info-icon"></i>
+                <div class="info-label">Hãng hàng không</div>
+                <div class="info-value">@Model.AirlineName</div>
+                @if (!string.IsNullOrEmpty(Model.AirlineIata))
+                {
+                    <div class="info-sub">(@Model.AirlineIata)</div>
+                }
+            </div>
+
+            <div class="info-card status-card">
+                <i class="fas fa-info-circle info-icon"></i>
+                <div class="info-label">Tình trạng chuyến bay</div>
+                <div class="info-value">
+                    @if (!string.IsNullOrEmpty(Model.FlightStatus))
+                    {
+                        <span class="status-badge-inline status-@Model.FlightStatus?.ToLower()">
+                            @switch (Model.FlightStatus?.ToLower())
+                            {
+                                case "active":
+                                    @:Hoạt động
+                                    break;
+                                case "scheduled":
+                                    @:Đã lên lịch
+                                    break;
+                                case "landed":
+                                    @:Đã hạ cánh
+                                    break;
+                                case "cancelled":
+                                    @:Đã hủy
+                                    break;
+                                case "delayed":
+                                    @:Trễ chuyến
+                                    break;
+                                default:
+                                    @Model.FlightStatus
+                                    break;
+                            }
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Không xác định</span>
+                    }
+                </div>
+            </div>
+
+            @if (Model.Price.HasValue)
+            {
+                <div class="info-card price-card">
+                    <i class="fas fa-dollar-sign info-icon"></i>
+                    <div class="info-label">Giá vé</div>
+                    <div class="info-value price-highlight">@Model.Price.Value.ToString("N0") VND</div>
+                </div>
+            }
+        </div>
+
+        <!-- Departure Information -->
+        <div class="section-title">
+            <i class="fas fa-plane-departure"></i>
+            <h3>Thông tin khởi hành</h3>
+        </div>
+        <div class="flight-info-grid">
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt info-icon"></i>
+                <div class="info-label">Sân bay</div>
+                <div class="info-value">@Model.DepartureAirport</div>
+                @if (!string.IsNullOrEmpty(Model.DepartureIata))
+                {
+                    <div class="info-sub">@Model.DepartureIata</div>
+                }
+            </div>
+
+            @if (Model.DepartureScheduled.HasValue)
+            {
+                <div class="info-card">
+                    <i class="fas fa-clock info-icon"></i>
+                    <div class="info-label">Giờ dự kiến</div>
+                    <div class="info-value">@Model.DepartureScheduled.Value.ToString("HH:mm")</div>
+                    <div class="info-sub">@Model.DepartureScheduled.Value.ToString("dd/MM/yyyy")</div>
+                </div>
+            }
+
+            @if (Model.DepartureActual.HasValue)
+            {
+                <div class="info-card">
+                    <i class="fas fa-check-circle info-icon"></i>
+                    <div class="info-label">Giờ thực tế</div>
+                    <div class="info-value">@Model.DepartureActual.Value.ToString("HH:mm")</div>
+                    <div class="info-sub">@Model.DepartureActual.Value.ToString("dd/MM/yyyy")</div>
+                </div>
+            }
+        </div>
+
+        <!-- Arrival Information -->
+        <div class="section-title">
+            <i class="fas fa-plane-arrival"></i>
+            <h3>Thông tin đến nơi</h3>
+        </div>
+        <div class="flight-info-grid">
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt info-icon"></i>
+                <div class="info-label">Sân bay</div>
+                <div class="info-value">@Model.ArrivalAirport</div>
+                @if (!string.IsNullOrEmpty(Model.ArrivalIata))
+                {
+                    <div class="info-sub">@Model.ArrivalIata</div>
+                }
+            </div>
+
+            @if (Model.ArrivalScheduled.HasValue)
+            {
+                <div class="info-card">
+                    <i class="fas fa-clock info-icon"></i>
+                    <div class="info-label">Giờ dự kiến</div>
+                    <div class="info-value">@Model.ArrivalScheduled.Value.ToString("HH:mm")</div>
+                    <div class="info-sub">@Model.ArrivalScheduled.Value.ToString("dd/MM/yyyy")</div>
+                </div>
+            }
+
+            @if (Model.ArrivalActual.HasValue)
+            {
+                <div class="info-card">
+                    <i class="fas fa-check-circle info-icon"></i>
+                    <div class="info-label">Giờ thực tế</div>
+                    <div class="info-value">@Model.ArrivalActual.Value.ToString("HH:mm")</div>
+                    <div class="info-sub">@Model.ArrivalActual.Value.ToString("dd/MM/yyyy")</div>
+                </div>
+            }
+
+            @if (Model.ArrivalDelay.HasValue && Model.ArrivalDelay.Value > 0)
+            {
+                <div class="info-card delay-card">
+                    <i class="fas fa-exclamation-triangle info-icon"></i>
+                    <div class="info-label">Trễ chuyến</div>
+                    <div class="info-value delay-highlight">@Model.ArrivalDelay.Value phút</div>
+                </div>
+            }
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <div class="flight-image-section">
+                <img src="@Model.ImageUrl" alt="@Model.ArrivalAirport" class="flight-image">
+            </div>
+        }
+
+        <div style="text-align: center;">
+            <a href="@Url.Action("Search", new { 
+                from = ViewData["from"], 
+                to = ViewData["to"] 
+            })" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Quay lại kết quả
+            </a>
+        </div>
+    </div>
+</div>

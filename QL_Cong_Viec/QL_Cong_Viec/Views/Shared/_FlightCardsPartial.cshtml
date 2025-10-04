@@ -1,0 +1,24 @@
+﻿@model List<QL_Cong_Viec.Models.FlightDto>
+
+@foreach (var flight in Model)
+{
+    <a asp-action="Details" asp-controller="Flights" class="destination-card"
+       asp-route-id="@flight.FlightNumber">
+        <img src="@flight.ImageUrl" alt="@flight.ArrivalAirport" class="card-image" />
+        <div class="card-content">
+            <h3 class="destination-name">@flight.ArrivalAirport</h3>
+            <div class="flight-info">
+                <span class="flight-text">Các chuyến bay có giá từ</span>
+                <div>
+                    <div class="price">
+                        @string.Format("{0:N0} ₫", new Random().Next(1000000, 3000000))
+                    </div>
+                    <div class="price-label">
+                        @(flight.DepartureIata == flight.ArrivalIata ? "Trực tiếp" : "Quá cảnh")
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </a>
+}

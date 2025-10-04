@@ -1,0 +1,44 @@
+@startuml
+
+package "QL_Cong_Viec" {
+    class CongViec {
+        +int id
+        +String ten
+        +String moTa
+        +Date ngayBatDau
+        +Date ngayKetThuc
+        +void taoCongViec()
+        +void capNhatCongViec()
+        +void xoaCongViec()
+    }
+
+    class NguoiDung {
+        +int id
+        +String ten
+        +String email
+        +void dangNhap()
+        +void dangXuat()
+    }
+
+    class DuAn {
+        +int id
+        +String ten
+        +String moTa
+        +void taoDuAn()
+        +void capNhatDuAn()
+    }
+
+    class ThongBao {
+        +int id
+        +String noiDung
+        +Date ngayThongBao
+        +void guiThongBao()
+    }
+
+    CongViec --> NguoiDung : "giao cho"
+    CongViec --> DuAn : "thuộc về"
+    ThongBao --> NguoiDung : "gửi đến"
+
+}
+
+@enduml

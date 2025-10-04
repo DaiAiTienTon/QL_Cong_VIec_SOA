@@ -1,12 +1,184 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\flightsearchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\flightsearchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\models\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\models\\flightdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\views\\flights\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\views\\flights\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\controllers\\flightscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\controllers\\flightscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\wwwroot\\js\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\wwwroot\\js\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\wwwroot\\data\\airports.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\wwwroot\\data\\airports.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\service\\flightservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\service\\flightservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|d:\\ql_cong_viec_soa\\ql_cong_viec\\ql_cong_viec\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{4C00911B-3FE9-4969-8746-60A5BB818CFF}|QL_Cong_Viec\\QL_Cong_Viec.csproj|solutionrelative:ql_cong_viec\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "airports.json",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\wwwroot\\data\\airports.json",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\wwwroot\\data\\airports.json",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\wwwroot\\data\\airports.json",
+              "RelativeToolTip": "QL_Cong_Viec\\wwwroot\\data\\airports.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-04T03:44:23.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FlightDto.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\FlightDto.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\FlightDto.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\FlightDto.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\FlightDto.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA8wB8AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T03:39:29.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FlightSearchDto.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\FlightSearchDto.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Models\\FlightSearchDto.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Models\\FlightSearchDto.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Models\\FlightSearchDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T03:39:26.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "script.js",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\wwwroot\\js\\script.js",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\wwwroot\\js\\script.js",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\wwwroot\\js\\script.js",
+              "RelativeToolTip": "QL_Cong_Viec\\wwwroot\\js\\script.js",
+              "ViewState": "AgIAACYAAAAAAAAAAAAqwDQAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-04T03:31:10.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "site.js",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\wwwroot\\js\\site.js",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "QL_Cong_Viec\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-04T03:31:08.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Flights\\Index.cshtml",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Views\\Flights\\Index.cshtml",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Views\\Flights\\Index.cshtml",
+              "RelativeToolTip": "QL_Cong_Viec\\Views\\Flights\\Index.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAqwBIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-04T02:55:54.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FlightsController.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Controllers\\FlightsController.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Controllers\\FlightsController.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Controllers\\FlightsController.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Controllers\\FlightsController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAwwB4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T02:59:08.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FlightService.cs",
+              "DocumentMoniker": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\FlightService.cs",
+              "RelativeDocumentMoniker": "QL_Cong_Viec\\Service\\FlightService.cs",
+              "ToolTip": "D:\\QL_Cong_VIec_SOA\\QL_Cong_Viec\\QL_Cong_Viec\\Service\\FlightService.cs",
+              "RelativeToolTip": "QL_Cong_Viec\\Service\\FlightService.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAYwBIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T02:53:40.079Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

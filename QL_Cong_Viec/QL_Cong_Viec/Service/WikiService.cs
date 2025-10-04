@@ -1,54 +1,50 @@
 ﻿using System.Text.Json;
+using System.Collections.Concurrent;
 
 namespace QL_Cong_Viec.Service
 {
     public class WikiService
     {
-        private readonly HttpClient _http;
+        private readonly HttpClient _httpClient;
+        private static readonly ConcurrentDictionary<string, string?> _cache = new();
 
-        public WikiService(HttpClient http)
+        public WikiService(IHttpClientFactory httpClientFactory)
         {
-            _http = http;
+            _httpClient = httpClientFactory.CreateClient();
+            _httpClient.Timeout = TimeSpan.FromSeconds(2); // Timeout 2s cho mọi request
         }
 
         public async Task<string?> GetImageUrlAsync(string keyword)
         {
-            // B1: gọi search để tìm tiêu đề gần đúng
-            string searchUrl = $"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={Uri.EscapeDataString(keyword)}&format=json";
-            var searchRequest = new HttpRequestMessage(HttpMethod.Get, searchUrl);
-            searchRequest.Headers.UserAgent.ParseAdd("MyFlightApp/1.0 (contact: youremail@example.com)");
+            if (_cache.TryGetValue(keyword, out var cached))
+                return cached;
 
-            var searchResp = await _http.SendAsync(searchRequest);
-            if (!searchResp.IsSuccessStatusCode) return null;
+            string? result = await TryGetImageDirectAsync(keyword);
 
-            var searchJson = await searchResp.Content.ReadAsStringAsync();
-            using var searchDoc = JsonDocument.Parse(searchJson);
-
-            string? bestTitle = null;
-            if (searchDoc.RootElement.TryGetProperty("query", out var query) &&
-                query.TryGetProperty("search", out var results) &&
-                results.ValueKind == JsonValueKind.Array &&
-                results.GetArrayLength() > 0)
+            if (result == null)
             {
-                bestTitle = results[0].GetProperty("title").GetString();
+                // fallback: search → rồi lấy pageimages
+                result = await TryGetImageViaSearchAsync(keyword);
             }
 
-            if (string.IsNullOrEmpty(bestTitle))
-                return null;
+            _cache[keyword] = result;
+            return result;
+        }
 
-            // B2: gọi API pageimages để lấy thumbnail
-            string url = $"https://en.wikipedia.org/w/api.php?action=query&titles={Uri.EscapeDataString(bestTitle)}&prop=pageimages&format=json&pithumbsize=500";
+        private async Task<string?> TryGetImageDirectAsync(string title)
+        {
+            string url = $"https://en.wikipedia.org/w/api.php?action=query&titles={Uri.EscapeDataString(title)}&prop=pageimages&format=json&pithumbsize=500";
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.UserAgent.ParseAdd("MyFlightApp/1.0 (contact: youremail@example.com)");
 
-            var response = await _http.SendAsync(request);
+            var response = await _httpClient.SendAsync(request);
             if (!response.IsSuccessStatusCode) return null;
 
             var json = await response.Content.ReadAsStringAsync();
             using var doc = JsonDocument.Parse(json);
 
-            if (doc.RootElement.TryGetProperty("query", out var q2) &&
-                q2.TryGetProperty("pages", out var pages))
+            if (doc.RootElement.TryGetProperty("query", out var query) &&
+                query.TryGetProperty("pages", out var pages))
             {
                 foreach (var page in pages.EnumerateObject())
                 {
@@ -59,7 +55,32 @@ namespace QL_Cong_Viec.Service
                     }
                 }
             }
+            return null;
+        }
 
+        private async Task<string?> TryGetImageViaSearchAsync(string keyword)
+        {
+            string searchUrl = $"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={Uri.EscapeDataString(keyword)}&format=json";
+            var searchReq = new HttpRequestMessage(HttpMethod.Get, searchUrl);
+            searchReq.Headers.UserAgent.ParseAdd("MyFlightApp/1.0 (contact: youremail@example.com)");
+
+            var searchResp = await _httpClient.SendAsync(searchReq);
+            if (!searchResp.IsSuccessStatusCode) return null;
+
+            var searchJson = await searchResp.Content.ReadAsStringAsync();
+            using var searchDoc = JsonDocument.Parse(searchJson);
+
+            if (searchDoc.RootElement.TryGetProperty("query", out var query) &&
+                query.TryGetProperty("search", out var results) &&
+                results.ValueKind == JsonValueKind.Array &&
+                results.GetArrayLength() > 0)
+            {
+                var bestTitle = results[0].GetProperty("title").GetString();
+                if (!string.IsNullOrEmpty(bestTitle))
+                {
+                    return await TryGetImageDirectAsync(bestTitle);
+                }
+            }
             return null;
         }
     }

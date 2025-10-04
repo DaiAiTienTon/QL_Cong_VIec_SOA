@@ -1,0 +1,392 @@
+[
+  {
+    "AirportName": "Noi Bai International Airport",
+    "City": "Hà Nội",
+    "Country": "Vietnam",
+    "IataCode": "HAN"
+  },
+  {
+    "AirportName": "Tan Son Nhat International Airport",
+    "City": "Ho Chi Minh City",
+    "Country": "Vietnam",
+    "IataCode": "SGN"
+  },
+  {
+    "AirportName": "Da Nang International Airport",
+    "City": "Da Nang",
+    "Country": "Vietnam",
+    "IataCode": "DAD"
+  },
+  {
+    "AirportName": "Cam Ranh International Airport",
+    "City": "Khanh Hoa",
+    "Country": "Vietnam",
+    "IataCode": "CXR"
+  },
+  {
+    "AirportName": "Phu Quoc International Airport",
+    "City": "Phu Quoc",
+    "Country": "Vietnam",
+    "IataCode": "PQC"
+  },
+  {
+    "AirportName": "Changi Airport",
+    "City": "Singapore",
+    "Country": "Singapore",
+    "IataCode": "SIN"
+  },
+  {
+    "AirportName": "Suvarnabhumi Airport",
+    "City": "Bangkok",
+    "Country": "Thailand",
+    "IataCode": "BKK"
+  },
+  {
+    "AirportName": "Don Mueang International Airport",
+    "City": "Bangkok",
+    "Country": "Thailand",
+    "IataCode": "DMK"
+  },
+  {
+    "AirportName": "Kuala Lumpur International Airport",
+    "City": "Kuala Lumpur",
+    "Country": "Malaysia",
+    "IataCode": "KUL"
+  },
+  {
+    "AirportName": "Tokyo Haneda Airport",
+    "City": "Tokyo",
+    "Country": "Japan",
+    "IataCode": "HND"
+  },
+  {
+    "AirportName": "Narita International Airport",
+    "City": "Tokyo",
+    "Country": "Japan",
+    "IataCode": "NRT"
+  },
+  {
+    "AirportName": "Kansai International Airport",
+    "City": "Osaka",
+    "Country": "Japan",
+    "IataCode": "KIX"
+  },
+  {
+    "AirportName": "Incheon International Airport",
+    "City": "Seoul",
+    "Country": "South Korea",
+    "IataCode": "ICN"
+  },
+  {
+    "AirportName": "Gimpo International Airport",
+    "City": "Seoul",
+    "Country": "South Korea",
+    "IataCode": "GMP"
+  },
+  {
+    "AirportName": "Beijing Capital International Airport",
+    "City": "Beijing",
+    "Country": "China",
+    "IataCode": "PEK"
+  },
+  {
+    "AirportName": "Shanghai Pudong International Airport",
+    "City": "Shanghai",
+    "Country": "China",
+    "IataCode": "PVG"
+  },
+  {
+    "AirportName": "Shanghai Hongqiao International Airport",
+    "City": "Shanghai",
+    "Country": "China",
+    "IataCode": "SHA"
+  },
+  {
+    "AirportName": "Hong Kong International Airport",
+    "City": "Hong Kong",
+    "Country": "China",
+    "IataCode": "HKG"
+  },
+  {
+    "AirportName": "Taiwan Taoyuan International Airport",
+    "City": "Taipei",
+    "Country": "Taiwan",
+    "IataCode": "TPE"
+  },
+  {
+    "AirportName": "Indira Gandhi International Airport",
+    "City": "Delhi",
+    "Country": "India",
+    "IataCode": "DEL"
+  },
+  {
+    "AirportName": "Chhatrapati Shivaji Maharaj International Airport",
+    "City": "Mumbai",
+    "Country": "India",
+    "IataCode": "BOM"
+  },
+  {
+    "AirportName": "Ninoy Aquino International Airport",
+    "City": "Manila",
+    "Country": "Philippines",
+    "IataCode": "MNL"
+  },
+  {
+    "AirportName": "Dubai International Airport",
+    "City": "Dubai",
+    "Country": "UAE",
+    "IataCode": "DXB"
+  },
+  {
+    "AirportName": "Al Maktoum International Airport",
+    "City": "Dubai",
+    "Country": "UAE",
+    "IataCode": "DWC"
+  },
+  {
+    "AirportName": "Doha Hamad International Airport",
+    "City": "Doha",
+    "Country": "Qatar",
+    "IataCode": "DOH"
+  },
+  {
+    "AirportName": "Abu Dhabi International Airport",
+    "City": "Abu Dhabi",
+    "Country": "UAE",
+    "IataCode": "AUH"
+  },
+  {
+    "AirportName": "King Abdulaziz International Airport",
+    "City": "Jeddah",
+    "Country": "Saudi Arabia",
+    "IataCode": "JED"
+  },
+  {
+    "AirportName": "King Khalid International Airport",
+    "City": "Riyadh",
+    "Country": "Saudi Arabia",
+    "IataCode": "RUH"
+  },
+  {
+    "AirportName": "Istanbul Airport",
+    "City": "Istanbul",
+    "Country": "Turkey",
+    "IataCode": "IST"
+  },
+  {
+    "AirportName": "London Heathrow Airport",
+    "City": "London",
+    "Country": "United Kingdom",
+    "IataCode": "LHR"
+  },
+  {
+    "AirportName": "London Gatwick Airport",
+    "City": "London",
+    "Country": "United Kingdom",
+    "IataCode": "LGW"
+  },
+  {
+    "AirportName": "Manchester Airport",
+    "City": "Manchester",
+    "Country": "United Kingdom",
+    "IataCode": "MAN"
+  },
+  {
+    "AirportName": "Paris Charles de Gaulle Airport",
+    "City": "Paris",
+    "Country": "France",
+    "IataCode": "CDG"
+  },
+  {
+    "AirportName": "Paris Orly Airport",
+    "City": "Paris",
+    "Country": "France",
+    "IataCode": "ORY"
+  },
+  {
+    "AirportName": "Frankfurt am Main Airport",
+    "City": "Frankfurt",
+    "Country": "Germany",
+    "IataCode": "FRA"
+  },
+  {
+    "AirportName": "Munich Airport",
+    "City": "Munich",
+    "Country": "Germany",
+    "IataCode": "MUC"
+  },
+  {
+    "AirportName": "Amsterdam Schiphol Airport",
+    "City": "Amsterdam",
+    "Country": "Netherlands",
+    "IataCode": "AMS"
+  },
+  {
+    "AirportName": "Zurich Airport",
+    "City": "Zurich",
+    "Country": "Switzerland",
+    "IataCode": "ZRH"
+  },
+  {
+    "AirportName": "Rome Fiumicino Airport",
+    "City": "Rome",
+    "Country": "Italy",
+    "IataCode": "FCO"
+  },
+  {
+    "AirportName": "Milan Malpensa Airport",
+    "City": "Milan",
+    "Country": "Italy",
+    "IataCode": "MXP"
+  },
+  {
+    "AirportName": "Madrid Barajas Airport",
+    "City": "Madrid",
+    "Country": "Spain",
+    "IataCode": "MAD"
+  },
+  {
+    "AirportName": "Barcelona El Prat Airport",
+    "City": "Barcelona",
+    "Country": "Spain",
+    "IataCode": "BCN"
+  },
+  {
+    "AirportName": "Vienna International Airport",
+    "City": "Vienna",
+    "Country": "Austria",
+    "IataCode": "VIE"
+  },
+  {
+    "AirportName": "John F. Kennedy International Airport",
+    "City": "New York",
+    "Country": "USA",
+    "IataCode": "JFK"
+  },
+  {
+    "AirportName": "LaGuardia Airport",
+    "City": "New York",
+    "Country": "USA",
+    "IataCode": "LGA"
+  },
+  {
+    "AirportName": "Newark Liberty International Airport",
+    "City": "New York",
+    "Country": "USA",
+    "IataCode": "EWR"
+  },
+  {
+    "AirportName": "Los Angeles International Airport",
+    "City": "Los Angeles",
+    "Country": "USA",
+    "IataCode": "LAX"
+  },
+  {
+    "AirportName": "San Francisco International Airport",
+    "City": "San Francisco",
+    "Country": "USA",
+    "IataCode": "SFO"
+  },
+  {
+    "AirportName": "Seattle-Tacoma International Airport",
+    "City": "Seattle",
+    "Country": "USA",
+    "IataCode": "SEA"
+  },
+  {
+    "AirportName": "Chicago O'Hare International Airport",
+    "City": "Chicago",
+    "Country": "USA",
+    "IataCode": "ORD"
+  },
+  {
+    "AirportName": "Chicago Midway International Airport",
+    "City": "Chicago",
+    "Country": "USA",
+    "IataCode": "MDW"
+  },
+  {
+    "AirportName": "Hartsfield–Jackson Atlanta International Airport",
+    "City": "Atlanta",
+    "Country": "USA",
+    "IataCode": "ATL"
+  },
+  {
+    "AirportName": "Miami International Airport",
+    "City": "Miami",
+    "Country": "USA",
+    "IataCode": "MIA"
+  },
+  {
+    "AirportName": "Dallas/Fort Worth International Airport",
+    "City": "Dallas",
+    "Country": "USA",
+    "IataCode": "DFW"
+  },
+  {
+    "AirportName": "Houston George Bush Intercontinental Airport",
+    "City": "Houston",
+    "Country": "USA",
+    "IataCode": "IAH"
+  },
+  {
+    "AirportName": "Denver International Airport",
+    "City": "Denver",
+    "Country": "USA",
+    "IataCode": "DEN"
+  },
+  {
+    "AirportName": "São Paulo/Guarulhos International Airport",
+    "City": "São Paulo",
+    "Country": "Brazil",
+    "IataCode": "GRU"
+  },
+  {
+    "AirportName": "Rio de Janeiro–Galeão International Airport",
+    "City": "Rio de Janeiro",
+    "Country": "Brazil",
+    "IataCode": "GIG"
+  },
+  {
+    "AirportName": "El Dorado International Airport",
+    "City": "Bogotá",
+    "Country": "Colombia",
+    "IataCode": "BOG"
+  },
+  {
+    "AirportName": "Jorge Chávez International Airport",
+    "City": "Lima",
+    "Country": "Peru",
+    "IataCode": "LIM"
+  },
+  {
+    "AirportName": "Sydney Kingsford Smith Airport",
+    "City": "Sydney",
+    "Country": "Australia",
+    "IataCode": "SYD"
+  },
+  {
+    "AirportName": "Melbourne Airport",
+    "City": "Melbourne",
+    "Country": "Australia",
+    "IataCode": "MEL"
+  },
+  {
+    "AirportName": "Brisbane Airport",
+    "City": "Brisbane",
+    "Country": "Australia",
+    "IataCode": "BNE"
+  },
+  {
+    "AirportName": "Perth Airport",
+    "City": "Perth",
+    "Country": "Australia",
+    "IataCode": "PER"
+  },
+  {
+    "AirportName": "Auckland Airport",
+    "City": "Auckland",
+    "Country": "New Zealand",
+    "IataCode": "AKL"
+  }
+]
