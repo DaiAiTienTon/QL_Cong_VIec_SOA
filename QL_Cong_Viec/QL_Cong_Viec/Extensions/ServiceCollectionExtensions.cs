@@ -20,7 +20,7 @@ namespace QL_Cong_Viec.Extensions
 
             // Register service adapters with configuration (Scoped!)
             services.AddScoped<FlightServiceAdapter>();
-            services.AddScoped<AmadeusServiceAdapter>();
+         
             services.AddScoped<HotelServiceAdapter>();
             services.AddScoped<WikiServiceAdapter>();
             services.AddSingleton<CountryServiceAdapter>();
@@ -49,8 +49,7 @@ namespace QL_Cong_Viec.Extensions
             if (IsServiceEnabled(serviceSettings, "FlightService"))
                 serviceRegistry.RegisterService("FlightService", scopedProvider.GetRequiredService<FlightServiceAdapter>());
 
-            if (IsServiceEnabled(serviceSettings, "AmadeusService"))
-                serviceRegistry.RegisterService("AmadeusService", scopedProvider.GetRequiredService<AmadeusServiceAdapter>());
+            ;
 
             if (IsServiceEnabled(serviceSettings, "HotelService"))
                 serviceRegistry.RegisterService("HotelService", scopedProvider.GetRequiredService<HotelServiceAdapter>());

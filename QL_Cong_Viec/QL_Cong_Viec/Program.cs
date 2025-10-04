@@ -24,7 +24,7 @@ builder.Services.AddSession(options =>
 // Add HttpClients for existing services
 builder.Services.AddHttpClient<FlightService>();
 builder.Services.AddHttpClient<WikiService>();
-builder.Services.AddHttpClient<AmadeusService>();
+
 builder.Services.AddHttpClient<HotelService>()
     .ConfigureHttpClient(client =>
     {
@@ -38,7 +38,7 @@ builder.Services.AddHttpClient<CurrencyService>();
 // Add existing services
 builder.Services.AddScoped<FlightService>();
 builder.Services.AddScoped<WikiService>();
-builder.Services.AddScoped<AmadeusService>();
+
 builder.Services.AddScoped<HotelService>();
 builder.Services.AddScoped<FlightAggregatorService>();
 

@@ -3,33 +3,15 @@
 @{
     ViewData["Title"] = "Tìm kiếm chuyến bay";
 }
-    <div class="ocean-bg"></div>
-    <div class="wave-overlay"></div>
-   
-
-    <!-- Main Content -->
-
+<div class="ocean-bg"></div>
+<div class="wave-overlay"></div>
 
 <div class="bottomheader">
     <form class="main-content" asp-action="Search" asp-controller="Flights" method="get">
         <h1 class="hero-title">
-            Vé máy bay giá rẻ nhất đi muôn nơi, từ bất kỳ đâu
+            Vé máy bay giá rẻ nhất đi muôn nơi
         </h1>
         <div class="search-container">
-            <div class="trip-type-selector">
-                <label>
-                    <input type="radio" value="round" />
-                    Khứ hồi
-                </label>
-                <label>
-                    <input type="radio"  value="oneway" checked />
-                    Một chiều
-                </label>
-                <label>
-                    <input type="radio" value="multi" />
-                    Nhiều thành phố
-                </label>
-            </div>
             <div class="search-form">
                 <!-- From -->
                 <div class="search-input from-input">
@@ -39,9 +21,8 @@
                            type="text"
                            placeholder="Việt Nam (VN)"
                            required
-                           autocomplete="off" />
+                           />
                     <input type="hidden" id="fromIata" name="from" />
-
                     <ul id="from-suggestions" class="suggestions"></ul>
                 </div>
 
@@ -49,11 +30,11 @@
                 <div class="search-input">
                     <label class="input-label" for="to">Đến</label>
                     <input id="to"
-                            value ="@ViewData["to"]"
+                           value="@ViewData["to"]"
                            type="text"
                            placeholder="Quốc gia, thành phố hoặc sân bay"
                            required
-                           autocomplete="off" />
+                           />
                     <input type="hidden" id="toIata" name="to" />
                     <ul id="to-suggestions" class="suggestions"></ul>
                 </div>
@@ -62,7 +43,7 @@
                 <div class="search-input">
                     <label class="input-label" for="depart">Ngày đi</label>
                     <input id="depart"
-                          
+                           name="date"
                            type="date"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")"
                            required />
@@ -70,18 +51,8 @@
 
                 <!-- Return -->
                 <div class="search-input">
-                    <label class="input-label" for="return">Quay về</label>
-                    <input id="return"  type="date" value="@DateTime.Now.AddDays(7).ToString("yyyy-MM-dd")" />
-                </div>
-
-                <!-- Passengers -->
-                <div class="search-input">
-                    <label class="input-label" for="passengers">Du khách và hạng không</label>
-                    <input id="passengers"
-                          
-                           type="text"
-                           value="1 người lớn, Phổ thông"
-                           readonly />
+                    <label class="input-label" for="return">Ngày về</label>
+                    <input id="return" name="returnDate" type="date" value="@DateTime.Now.AddDays(7).ToString("yyyy-MM-dd")" />
                 </div>
 
                 <!-- Submit -->
@@ -89,87 +60,21 @@
                     <button class="search-btn" id="btnSearch" type="submit">Tìm kiếm</button>
                 </div>
             </div>
-
-            <!-- Options -->
-            <div class="additional-options">
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" id="nearby1" name="nearbyDepart" />
-                    <label for="nearby1">Thêm các sân bay gần đây (đi)</label>
-                </div>
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" id="nearby2" name="nearbyArrive" />
-                    <label for="nearby2">Thêm các sân bay gần đây (đến)</label>
-                </div>
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" id="direct" name="direct" />
-                    <label for="direct">Chuyến bay thẳng</label>
-                </div>
-            </div>
         </div>
     </form>
 </div>
 
+<main class="container">
+    <div class="contatner-header">
+        <h1 class="main-title">
+            Khám phá mọi nơi
+        </h1>
+    </div>
 
-    <main class="container">
-        <div class="contatner-header">
-            <h1 class="main-title">
-                Khám phá mọi nơi từ Th 5 18 đến Th 5 25 Tháng 9
-            </h1>
-
-            <div class="filter-navigation">
-                <button class="arrow-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12Z" />
-                    </svg>
-                </button>
-
-                <div class="button-navigation">
-                    <a href="#" class="nav-btn">Gần</a>
-                    <a href="#" class="nav-btn active">Các điểm đến ít được chú ý</a>
-                    <a href="#" class="nav-btn">Bãi biển</a>
-                    <a href="#" class="nav-btn">Nghệ thuật và văn hóa</a>
-                    <a href="#" class="nav-btn">Thức ăn ngon</a>
-                    <a href="#" class="nav-btn">Những chuyến phiêu lưu ngoài trời</a>
-                    <a href="#" class="nav-btn">Cuộc sống về đêm và hoạt động giải trí</a>
-                </div>
-
-                <button class="arrow-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8.59 16.59L10 18L16 12L10 6L8.59 7.41L13.17 12Z" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-    <div class="destinations-grid">
-
+    <div id="flights-container" class="destinations-grid">
         @if (Model != null && Model.Any())
         {
-      
-                @foreach (var flight in Model)
-                {
-                <a asp-action="Details" asp-controller="Flights" class="destination-card"
-                   asp-route-id="@flight.FlightNumber.ToString()">
-
-                    <img src="@flight.ImageUrl" alt="@flight.ArrivalAirport" class="card-image" />
-               
-                        <div class="card-content">
-                            <h3 class="destination-name">@flight.ArrivalAirport</h3>
-                            <div class="flight-info">
-                                <span class="flight-text">Các chuyến bay có giá từ</span>
-                                <div>
-                                    <div class="price">
-                                        @string.Format("{0:N0} ₫", new Random().Next(1000000, 3000000))
-                                    </div>
-                                    <div class="price-label">
-                                        @(flight.DepartureIata == flight.ArrivalIata ? "Trực tiếp" : "Quá cảnh")
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                }
-
+            @await Html.PartialAsync("_FlightCardsPartial", Model)
         }
         else
         {
@@ -177,9 +82,6 @@
                 <p>Không có chuyến bay nào để hiển thị.</p>
             </div>
         }
-
     </div>
 
-    </main>
-
-  
+</main>

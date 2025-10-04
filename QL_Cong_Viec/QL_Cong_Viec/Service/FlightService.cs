@@ -1,5 +1,6 @@
 ﻿using QL_Cong_Viec.Models;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace QL_Cong_Viec.Service
 {
@@ -8,7 +9,6 @@ namespace QL_Cong_Viec.Service
         private readonly HttpClient _httpClient;
         private readonly string _apiKey;
 
-        // ✅ Thay đổi: Dùng IHttpClientFactory thay vì HttpClient
         public FlightService(IHttpClientFactory httpClientFactory, IConfiguration config)
         {
             _httpClient = httpClientFactory.CreateClient();
@@ -17,8 +17,12 @@ namespace QL_Cong_Viec.Service
 
         public async Task<List<FlightDto>> GetFlightsAsync(string from, string to, string? date = null)
         {
+            int limit = 10; // số record muốn lấy
             string url = $"http://api.aviationstack.com/v1/flights?access_key={_apiKey}" +
-                         $"&dep_iata={from}&arr_iata={to}";
+                         $"&dep_iata={from}&arr_iata={to}" +
+                         (!string.IsNullOrEmpty(date) ? $"&flight_date={date}" : "") +
+                         $"&limit={limit}";
+
 
             var response = await _httpClient.GetAsync(url);
 
@@ -31,56 +35,84 @@ namespace QL_Cong_Viec.Service
             }
 
             var json = await response.Content.ReadAsStringAsync();
-            var flights = new List<FlightDto>();
-            using var doc = JsonDocument.Parse(json);
 
-            if (doc.RootElement.TryGetProperty("data", out var dataArray) &&
-                dataArray.ValueKind == JsonValueKind.Array)
+           
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var root = JsonSerializer.Deserialize<AviationStackResponse>(json, options);
+
+            if (root?.Data == null) return new List<FlightDto>();
+
+            return root.Data.Select(f => new FlightDto
             {
-                foreach (var data in dataArray.EnumerateArray())
-                {
-                    var dep = data.TryGetProperty("departure", out var depJson) ? depJson : default;
-                    var arr = data.TryGetProperty("arrival", out var arrJson) ? arrJson : default;
-                    var airlineObj = data.TryGetProperty("airline", out var airlineJson) ? airlineJson : default;
-                    var flightObj = data.TryGetProperty("flight", out var flightJson) ? flightJson : default;
+                FlightDate = f.FlightDate,
+                FlightStatus = f.FlightStatus,
 
-                    var flight = new FlightDto
-                    {
-                        FlightDate = data.TryGetProperty("flight_date", out var flightDate) ? flightDate.GetString() : null,
-                        FlightStatus = data.TryGetProperty("flight_status", out var flightStatus) ? flightStatus.GetString() : null,
+                // Departure
+                DepartureAirport = f.Departure?.Airport,
+                DepartureIata = f.Departure?.Iata,
+                DepartureScheduled = ParseDate(f.Departure?.Scheduled),
+                DepartureActual = ParseDate(f.Departure?.Actual),
+                DepartureDelay = f.Departure?.Delay,
 
-                        // Departure
-                        DepartureAirport = dep.ValueKind != JsonValueKind.Undefined && dep.TryGetProperty("airport", out var depAirportProp) ? depAirportProp.GetString() : null,
-                        DepartureIata = dep.ValueKind != JsonValueKind.Undefined && dep.TryGetProperty("iata", out var depIata) ? depIata.GetString() : null,
-                        DepartureScheduled = dep.ValueKind != JsonValueKind.Undefined && dep.TryGetProperty("scheduled", out var depScheduled) && depScheduled.ValueKind == JsonValueKind.String
-                            ? DateTime.TryParse(depScheduled.GetString(), out var depSch) ? depSch : (DateTime?)null : null,
-                        DepartureActual = dep.ValueKind != JsonValueKind.Undefined && dep.TryGetProperty("actual", out var depActual) && depActual.ValueKind == JsonValueKind.String
-                            ? DateTime.TryParse(depActual.GetString(), out var depAct) ? depAct : (DateTime?)null : null,
+                // Arrival
+                ArrivalAirport = f.Arrival?.Airport,
+                ArrivalIata = f.Arrival?.Iata,
+                ArrivalScheduled = ParseDate(f.Arrival?.Scheduled),
+                ArrivalActual = ParseDate(f.Arrival?.Actual),
+                ArrivalDelay = f.Arrival?.Delay,
 
-                        // Arrival
-                        ArrivalAirport = arr.ValueKind != JsonValueKind.Undefined && arr.TryGetProperty("airport", out var arrAirportProp) ? arrAirportProp.GetString() : null,
-                        ArrivalIata = arr.ValueKind != JsonValueKind.Undefined && arr.TryGetProperty("iata", out var arrIata) ? arrIata.GetString() : null,
-                        ArrivalScheduled = arr.ValueKind != JsonValueKind.Undefined && arr.TryGetProperty("scheduled", out var arrScheduled) && arrScheduled.ValueKind == JsonValueKind.String
-                            ? DateTime.TryParse(arrScheduled.GetString(), out var arrSch) ? arrSch : (DateTime?)null : null,
-                        ArrivalActual = arr.ValueKind != JsonValueKind.Undefined && arr.TryGetProperty("actual", out var arrActual) && arrActual.ValueKind == JsonValueKind.String
-                            ? DateTime.TryParse(arrActual.GetString(), out var arrAct) ? arrAct : (DateTime?)null : null,
-                        ArrivalDelay = arr.ValueKind != JsonValueKind.Undefined && arr.TryGetProperty("delay", out var arrDelay) && arrDelay.ValueKind == JsonValueKind.Number
-                            ? arrDelay.GetInt32() : (int?)null,
+                // Airline
+                AirlineName = f.Airline?.Name,
+                AirlineIata = f.Airline?.Iata,
 
-                        // Airline
-                        AirlineName = airlineObj.ValueKind != JsonValueKind.Undefined && airlineObj.TryGetProperty("name", out var airlineName) ? airlineName.GetString() : null,
-                        AirlineIata = airlineObj.ValueKind != JsonValueKind.Undefined && airlineObj.TryGetProperty("iata", out var airlineIata) ? airlineIata.GetString() : null,
-
-                        // Flight
-                        FlightNumber = flightObj.ValueKind != JsonValueKind.Undefined && flightObj.TryGetProperty("number", out var flightNum) ? flightNum.GetString() : null,
-                        FlightIata = flightObj.ValueKind != JsonValueKind.Undefined && flightObj.TryGetProperty("iata", out var flightIata) ? flightIata.GetString() : null
-                    };
-
-                    flights.Add(flight);
-                }
-            }
-
-            return flights;
+                // Flight
+                FlightNumber = f.Flight?.Number,
+                FlightIata = f.Flight?.Iata
+            }).ToList();
         }
+
+        private static DateTime? ParseDate(string? date)
+        {
+            return DateTime.TryParse(date, out var d) ? d : (DateTime?)null;
+        }
+    }
+
+    // ===== Model trung gian để deserialize JSON =====
+    public class AviationStackResponse
+    {
+        public List<AviationStackFlight>? Data { get; set; }
+    }
+
+    public class AviationStackFlight
+    {
+        [JsonPropertyName("flight_date")]
+        public string? FlightDate { get; set; }
+
+        public string? FlightStatus { get; set; }
+        public AviationStackAirport? Departure { get; set; }
+        public AviationStackAirport? Arrival { get; set; }
+        public AviationStackAirline? Airline { get; set; }
+        public AviationStackFlightInfo? Flight { get; set; }
+    }
+
+    public class AviationStackAirport
+    {
+        public string? Airport { get; set; }
+        public string? Iata { get; set; }
+        public string? Scheduled { get; set; }
+        public string? Actual { get; set; }
+        public int? Delay { get; set; }
+    }
+
+    public class AviationStackAirline
+    {
+        public string? Name { get; set; }
+        public string? Iata { get; set; }
+    }
+
+    public class AviationStackFlightInfo
+    {
+        public string? Number { get; set; }
+        public string? Iata { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace QL_Cong_Viec.ESB.Implementation
             {
                 // Tự động tạo và đăng ký các service adapters
                 RegisterService("FlightService", _serviceProvider.GetRequiredService<FlightServiceAdapter>());
-                RegisterService("AmadeusService", _serviceProvider.GetRequiredService<AmadeusServiceAdapter>());
+             
                 RegisterService("WikiService", _serviceProvider.GetRequiredService<WikiServiceAdapter>());
                 RegisterService("HotelService", _serviceProvider.GetRequiredService<HotelServiceAdapter>());
                 RegisterService("CountryService", _serviceProvider.GetRequiredService<CountryServiceAdapter>());

@@ -2,6 +2,8 @@
 {
     public class FlightDto
     {
+
+
         public string? FlightDate { get; set; }
         public string? FlightStatus { get; set; }
 
