@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -17,45 +18,32 @@ public class WeatherResultViewComponent : ViewComponent
         _serviceRegistry = serviceRegistry;
     }
 
-    public async Task<IViewComponentResult> InvokeAsync(SearchRequest model)
-    {
-        if (model == null ||
-       string.IsNullOrEmpty(model.Destination.Country) ||
-       string.IsNullOrEmpty(model.Destination.Subdivision))
-        {
-            return Content("Chưa đủ dữ liệu để tra cứu thời tiết");
-        }
 
+    public async Task<IViewComponentResult> InvokeAsync(double destLat, double destLng)
+    {
         try
         {
-            // 1. Lấy tọa độ qua ESB
-            var destCoords = await GetCoordinatesThroughESB(model.Destination.Country, model.Destination.Subdivision);
-            if (destCoords == null)
+
+            if (destLat == 0 && destLng == 0)
             {
-                return Content("Không tìm được tọa độ từ CountryService");
+                return Content("Không tìm được tọa độ điểm đến");
             }
 
-            // 2. Lấy thời tiết hiện tại qua ESB
-            var currentWeatherJson = await GetCurrentWeatherThroughESB(destCoords.Value.lat, destCoords.Value.lng);
+            var currentWeatherJson = await GetCurrentWeatherThroughESB(destLat, destLng);
             if (string.IsNullOrEmpty(currentWeatherJson))
             {
                 return Content("Không thể lấy dữ liệu thời tiết hiện tại");
             }
 
-            // 3. Parse thời tiết hiện tại
             var weatherInfo = ParseWeatherInfo(currentWeatherJson);
             if (weatherInfo == null)
                 return Content("Không có dữ liệu thời tiết cho khu vực này");
 
-            // 4. Nếu cần forecast, lấy thêm dự báo 7 ngày
-
-
-            var forecastJson = await GetWeatherForecastThroughESB(destCoords.Value.lat, destCoords.Value.lng);
+            var forecastJson = await GetWeatherForecastThroughESB(destLat, destLng);
             if (!string.IsNullOrEmpty(forecastJson))
             {
                 weatherInfo.Forecast = ParseForecastInfo(forecastJson);
             }
-
 
             return View("Default", weatherInfo);
         }
@@ -63,28 +51,6 @@ public class WeatherResultViewComponent : ViewComponent
         {
             return Content($"Lỗi khi xử lý: {ex.Message}");
         }
-    }
-
-    private async Task<(double lat, double lng)?> GetCoordinatesThroughESB(string countryId, string subdivisionIdOrName)
-    {
-        var countryService = _serviceRegistry.GetService("CountryService");
-        if (countryService == null) return null;
-
-        var request = new ServiceRequest
-        {
-            RequestId = Guid.NewGuid().ToString(),
-            Operation = "getcoordinates",
-            Parameters = new Dictionary<string, object>
-            {
-                { "countryId", countryId },
-                { "subdivisionIdOrName", subdivisionIdOrName }
-            }
-        };
-
-        var response = await countryService.HandleRequestAsync(request);
-        if (!response.Success || response.Data == null) return null;
-
-        return response.Data as (double lat, double lng)?;
     }
 
     private async Task<string> GetCurrentWeatherThroughESB(double lat, double lng)
@@ -246,7 +212,3 @@ public class WeatherResultViewComponent : ViewComponent
         return baseDescription;
     }
 }
-
-// Thêm model cho forecast nếu chưa có
-
-

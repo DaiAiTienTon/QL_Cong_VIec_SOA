@@ -1,0 +1,93 @@
+﻿@model QL_Cong_Viec.Models.SearchRequest
+
+<div class="container results-section" style="margin-top: 3rem; padding: 2rem;">
+    <h2 class="text-center mb-4" style="color: #05203C; font-weight: 700;">
+        ✅ Kết quả tra cứu
+    </h2>
+
+
+
+    @if (Model?.Options?.IncludeDistance == true)
+    {
+        <div class="result-card" style="background: white; border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border: 1px solid #e9ecef;">
+            <h4 class="result-title" style="color: #05203C; font-weight: 700; font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0066cc">
+                    <path d="M21 3L3 10.5L9 13.5L12 19.5L21 3Z" />
+                </svg>
+                📏 Khoảng cách
+            </h4>
+            <div class="component-content">
+
+                @await Component.InvokeAsync("DistanceResult", new {
+                originLat = ViewBag.OriginLat ?? 0,
+                        originLng = ViewBag.OriginLng ?? 0,
+                        destLat = ViewBag.DestLat ?? 0,
+                        destLng = ViewBag.DestLng ?? 0
+                        })
+        </div>
+    </div>
+        }
+
+    @if (Model?.Options?.IncludeTime == true)
+    {
+        <div class="result-card" style="background: white; border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border: 1px solid #e9ecef;">
+            <h4 class="result-title" style="color: #05203C; font-weight: 700; font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0066cc">
+                    <path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M12 7V12L16 14L17 12L13.5 10.5V7H12Z" />
+                </svg>
+                ⏰ Thời gian
+            </h4>
+            <div class="component-content">
+
+                @await Component.InvokeAsync("TimeResult", new {
+                destLat = ViewBag.DestLat ?? 0,
+                        destLng = ViewBag.DestLng ?? 0
+                        })
+        </div>
+    </div>
+        }
+
+    @if (Model?.Options?.IncludeWeather == true)
+    {
+        <div class="result-card" style="background: white; border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border: 1px solid #e9ecef;">
+            <h4 class="result-title" style="color: #05203C; font-weight: 700; font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#0066cc">
+                    <path d="M6.5 20Q4.22 20 2.61 18.43Q1 16.85 1 14.58Q1 12.63 2.17 11.1Q3.35 9.57 5.25 9.15Q5.88 6.85 7.75 5.43Q9.63 4 12 4Q14.93 4 16.96 6.04Q19 8.07 19 11Q20.73 11.2 21.86 12.5Q23 13.78 23 15.5Q23 17.38 21.69 18.69Q20.38 20 18.5 20H6.5Z" />
+                </svg>
+                🌤️ Thời tiết
+            </h4>
+            <div class="component-content">
+
+                @await Component.InvokeAsync("WeatherResult", new {
+                destLat = ViewBag.DestLat ?? 0,
+                        destLng = ViewBag.DestLng ?? 0
+                        })
+        </div>
+    </div>
+        }
+
+    @if (Model?.Options?.IncludeCurrency == true)
+    {
+        <div class="result-card">
+
+            <div class="component-content">
+
+                @await Component.InvokeAsync("CurrencyResult", new {
+                fromCountryId = Model.Origin.Country,
+                        toCountryId = Model.Destination.Country
+                        })
+        </div>
+    </div>
+        }
+
+    @if (Model?.Options?.IncludeDistance != true &&
+        Model?.Options?.IncludeTime != true &&
+        Model?.Options?.IncludeWeather != true &&
+        Model?.Options?.IncludeCurrency != true)
+    {
+        <div class="alert alert-warning text-center">
+            <strong>⚠️ Chưa chọn tùy chọn nào!</strong><br>
+            Vui lòng chọn ít nhất 1 tùy chọn tra cứu.
+        </div>
+    }
+</div>
