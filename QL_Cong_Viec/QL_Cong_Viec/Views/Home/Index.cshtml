@@ -1,1 +1,477 @@
-﻿
+@using QL_Cong_Viec.Models
+@model SearchRequest
+
+@{
+	ViewData["Title"] = "Tra cứu địa điểm công tác";
+	Layout = "_Layout";
+}
+
+<style>
+	.search-hero {
+		background: linear-gradient(135deg, #05203C 0%, #0f4c75 100%);
+		min-height: 60vh;
+		display: flex;
+		align-items: center;
+		position: relative;
+		overflow: hidden;
+	}
+
+		.search-hero::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+			opacity: 0.3;
+		}
+
+	.search-container {
+		position: relative;
+		z-index: 2;
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	.search-title {
+		font-size: 3rem;
+		font-weight: 700;
+		color: white;
+		text-align: center;
+		margin-bottom: 3rem;
+		text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+	}
+
+	.search-card {
+		background: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(20px);
+		border-radius: 24px;
+		padding: 2.5rem;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.form-group {
+		margin-bottom: 1.5rem;
+	}
+
+	.form-label {
+		font-weight: 600;
+		color: #2c3e50;
+		margin-bottom: 0.5rem;
+		display: block;
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.form-select, .form-control {
+		border: 2px solid #e8ecef;
+		border-radius: 12px;
+		padding: 1rem 1.25rem;
+		font-size: 1rem;
+		transition: all 0.3s ease;
+		background: white;
+		color: #2c3e50;
+	}
+
+		.form-select:focus, .form-control:focus {
+			border-color: #0066cc;
+			box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.15);
+			outline: none;
+		}
+
+		.form-select:hover, .form-control:hover {
+			border-color: #0066cc;
+		}
+
+	.location-section {
+		background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+		border-radius: 16px;
+		padding: 1.5rem;
+		margin-bottom: 1.5rem;
+		position: relative;
+	}
+
+	.location-title {
+		font-weight: 700;
+		color: #05203C;
+		margin-bottom: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.location-icon {
+		width: 20px;
+		height: 20px;
+		fill: #0066cc;
+	}
+
+	.options-section {
+		background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+		border-radius: 16px;
+		padding: 1.5rem;
+		margin: 1.5rem 0;
+		border: 1px solid #e9ecef;
+	}
+
+	.options-title {
+		font-weight: 700;
+		color: #05203C;
+		margin-bottom: 1rem;
+		text-align: center;
+	}
+
+	.form-check {
+		margin: 0.5rem 1rem;
+		padding: 0.75rem 1rem;
+		background: white;
+		border-radius: 12px;
+		border: 2px solid #e8ecef;
+		transition: all 0.3s ease;
+		cursor: pointer;
+	}
+
+		.form-check:hover {
+			border-color: #0066cc;
+			background: #f8f9ff;
+		}
+
+	.form-check-input:checked ~ .form-check-label {
+		color: #0066cc;
+		font-weight: 600;
+	}
+
+	.form-check-input {
+		margin-right: 0.5rem;
+		scale: 1.2;
+	}
+
+	.form-check-label {
+		font-weight: 500;
+		color: #495057;
+		cursor: pointer;
+	}
+
+	.search-btn {
+		background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+		border: none;
+		border-radius: 12px;
+		padding: 1rem 3rem;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: white;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		transition: all 0.3s ease;
+		box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+	}
+
+		.search-btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+			background: linear-gradient(135deg, #0052a3 0%, #003d82 100%);
+		}
+
+	.results-section {
+		margin-top: 3rem;
+		padding: 2rem;
+	}
+
+	.result-card {
+		background: white;
+		border-radius: 16px;
+		padding: 1.5rem;
+		margin-bottom: 1.5rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		border: 1px solid #e9ecef;
+		transition: all 0.3s ease;
+	}
+
+		.result-card:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+		}
+
+	.result-title {
+		color: #05203C;
+		font-weight: 700;
+		font-size: 1.3rem;
+		margin-bottom: 1rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+</style>
+
+<div class="search-hero">
+	<div class="search-container">
+		<h1 class="search-title">Tra cứu địa điểm công tác</h1>
+
+		<div class="search-card">
+			<form asp-action="GetResults" method="get">
+
+
+				<!-- Departure Location -->
+				<div class="location-section">
+					<h3 class="location-title">
+						<svg class="location-icon" viewBox="0 0 24 24">
+							<path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5Z" />
+						</svg>
+						Điểm khởi hành
+					</h3>
+					<div class="row g-3">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="form-label">Quốc gia khởi hành</label>
+								<select id="originCountry" name="Origin.Country" class="form-select"
+										data-selected="@(Model?.Origin?.Country ?? "")">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="form-label">Tỉnh/Bang khởi hành</label>
+								<select id="originSubdivision" name="Origin.Subdivision" class="form-select"
+										data-selected="@(Model?.Origin?.Subdivision ?? "")">
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<!-- Destination Location -->
+				<div class="location-section">
+					<h3 class="location-title">
+						<svg class="location-icon" viewBox="0 0 24 24">
+							<path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" />
+						</svg>
+						Điểm đến
+					</h3>
+					<div class="row g-3">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="form-label">Quốc gia đến</label>
+								<select id="destinationCountry" name="Destination.Country" class="form-select"
+										data-selected="@(Model?.Destination?.Country ?? "")">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="form-label">Tỉnh/Bang đến</label>
+								<select id="destinationSubdivision" name="Destination.Subdivision" class="form-select"
+										data-selected="@(Model?.Destination?.Subdivision ?? "")">
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Date Selection -->
+				<div class="row g-3 mb-3">
+					<div class="col-md-6 mx-auto">
+						<div class="form-group">
+							<label class="form-label">Ngày đi</label>
+							<input type="date" class="form-control" name="DepartureDate"
+								   value="@(Model?.DepartureDate.ToString("yyyy-MM-dd") ?? "")" required />
+						</div>
+					</div>
+				</div>
+
+				<!-- Options -->
+				<div class="options-section">
+					<h3 class="options-title">Tùy chọn tra cứu</h3>
+					<div class="row g-2">
+						<div class="col-md-6 col-lg-3">
+							<div class="form-check">
+								<input type="checkbox" id="chkDistance" name="Options.IncludeDistance" class="form-check-input"
+									   value="true" @(Model?.Options?.IncludeDistance == true ? "checked" : "") />
+								<label for="chkDistance" class="form-check-label">
+									📏 Tra cứu khoảng cách
+								</label>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="form-check">
+								<input type="checkbox" id="chkTime" name="Options.IncludeTime" class="form-check-input"
+									   value="true" @(Model?.Options?.IncludeTime == true ? "checked" : "") />
+								<label for="chkTime" class="form-check-label">
+									⏰ Tra cứu thời gian
+								</label>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="form-check">
+								<input type="checkbox" id="chkWeather" name="Options.IncludeWeather" class="form-check-input"
+									   value="true" @(Model?.Options?.IncludeWeather == true ? "checked" : "") />
+								<label for="chkWeather" class="form-check-label">
+									🌤️ Tra cứu thời tiết
+								</label>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="form-check">
+								<input type="checkbox" id="chkCurrency" name="Options.IncludeCurrency" class="form-check-input"
+									   value="true" @(Model?.Options?.IncludeCurrency == true ? "checked" : "") />
+								<label for="chkCurrency" class="form-check-label">
+									💱 Tra cứu tiền tệ
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Search Button -->
+				<div class="text-center">
+					<button type="submit" class="search-btn">
+						🔍 Tìm kiếm
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="results-placeholder"></div>
+@section Scripts {
+	<script>
+		 $(document).ready(function () {
+			var selectedOriginCountry = $("#originCountry").data("selected");
+			var selectedOriginSubdivision = $("#originSubdivision").data("selected");
+			var selectedDestCountry = $("#destinationCountry").data("selected");
+			var selectedDestSubdivision = $("#destinationSubdivision").data("selected");
+
+			// Load countries
+			$.getJSON("/home/countries", function (data) {
+				var $origin = $("#originCountry");
+				var $dest = $("#destinationCountry");
+
+				$origin.empty().append('<option value="">-- Chọn quốc gia --</option>');
+				$dest.empty().append('<option value="">-- Chọn quốc gia --</option>');
+
+				$.each(data.geonames, function (i, c) {
+					var originSelected = (c.geonameId == selectedOriginCountry) ? "selected" : "";
+					var destSelected = (c.geonameId == selectedDestCountry) ? "selected" : "";
+
+					$origin.append(`<option value="${c.geonameId}" ${originSelected}>${c.countryName}</option>`);
+					$dest.append(`<option value="${c.geonameId}" ${destSelected}>${c.countryName}</option>`);
+				});
+
+				if (selectedOriginCountry) $origin.trigger('change');
+				if (selectedDestCountry) $dest.trigger('change');
+			});
+
+			// Origin country change
+			$("#originCountry").change(function () {
+				var geonameId = $(this).val();
+				var $sub = $("#originSubdivision");
+				$sub.empty().append('<option value="">-- Chọn tỉnh/bang --</option>');
+
+				if (geonameId) {
+					$.getJSON("/home/subdivisions/" + geonameId, function (data) {
+						$.each(data.geonames, function (i, s) {
+							var selected = (s.geonameId == selectedOriginSubdivision) ? "selected" : "";
+							$sub.append(`<option value="${s.geonameId}" ${selected}>${s.name}</option>`);
+						});
+					});
+				}
+			});
+
+			// Destination country change
+			$("#destinationCountry").change(function () {
+				var geonameId = $(this).val();
+				var $sub = $("#destinationSubdivision");
+				$sub.empty().append('<option value="">-- Chọn tỉnh/bang --</option>');
+
+				if (geonameId) {
+					$.getJSON("/home/subdivisions/" + geonameId, function (data) {
+						$.each(data.geonames, function (i, s) {
+							var selected = (s.geonameId == selectedDestSubdivision) ? "selected" : "";
+							$sub.append(`<option value="${s.geonameId}" ${selected}>${s.name}</option>`);
+						});
+					});
+				}
+			});
+
+			// ✅ Form submit handler - CHỈ ĐĂNG KÝ MỘT LẦN
+			$('form').on('submit', function(e) {
+				e.preventDefault();
+
+				console.log('Form submitted via AJAX');
+
+				var $btn = $('.search-btn');
+				var originalHtml = $btn.html();
+				var $resultsContainer = $('#results-placeholder');
+
+				// ✅ Clear old hidden fields
+				$('#originLat, #originLng, #destLat, #destLng').remove();
+
+				// Disable button và show loading
+				$btn.prop('disabled', true).html('🔄 Đang tìm kiếm...');
+
+				// Show loading skeleton
+				$resultsContainer.html(`
+					<div class="container" style="margin-top: 3rem; padding: 2rem;">
+						<div class="text-center py-5">
+							<div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+								<span class="visually-hidden">Loading...</span>
+							</div>
+							<p class="mt-3 text-muted" style="font-size: 1.1rem;">⏳ Đang tra cứu thông tin...</p>
+						</div>
+					</div>
+				`);
+
+				// Get form data
+				var formData = $(this).serialize();
+				console.log('Form data:', formData);
+
+				// AJAX call
+				$.ajax({
+					url: '@Url.Action("GetResults", "LookUpWorkLocation")',
+					type: 'GET',
+					data: formData,
+					success: function(html) {
+						console.log('✅ Results loaded successfully');
+						$resultsContainer.html(html);
+
+						// Smooth scroll to results
+						$('html, body').animate({
+							scrollTop: $resultsContainer.offset().top - 20
+						}, 600);
+					},
+					error: function(xhr, status, error) {
+						console.error('❌ Error:', error);
+						console.error('Response:', xhr.responseText);
+
+						$resultsContainer.html(`
+							<div class="container" style="margin-top: 3rem; padding: 2rem;">
+								<div class="alert alert-danger text-center">
+									<h4>❌ Có lỗi xảy ra!</h4>
+									<p><strong>Status:</strong> ${status}</p>
+									<p><strong>Error:</strong> ${error}</p>
+									<pre style="text-align: left; background: #f8f9fa; padding: 1rem; border-radius: 8px; max-height: 300px; overflow: auto;">${xhr.responseText}</pre>
+								</div>
+							</div>
+						`);
+					},
+					complete: function() {
+						// Re-enable button
+						$btn.prop('disabled', false).html(originalHtml);
+					}
+				});
+			});
+		});
+
+
+
+
+	</script>
+}

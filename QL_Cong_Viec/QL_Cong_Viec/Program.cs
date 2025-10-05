@@ -86,7 +86,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-// Build the application
 var app = builder.Build();
 
 app.UseResponseCompression();
