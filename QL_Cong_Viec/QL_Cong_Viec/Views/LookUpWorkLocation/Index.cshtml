@@ -2,8 +2,8 @@
 @model SearchRequest
 
 @{
-    ViewData["Title"] = "Tra cứu địa điểm công tác";
-    Layout = "_Layout";
+	ViewData["Title"] = "Tra cứu địa điểm công tác";
+	Layout = "_Layout";
 }
 
 <style>
@@ -206,30 +206,6 @@
         align-items: center;
         gap: 0.5rem;
     }
-
-    .swap-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        border: 2px solid #0066cc;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        z-index: 10;
-    }
-
-        .swap-icon:hover {
-            background: #0066cc;
-            color: white;
-            transform: translate(-50%, -50%) rotate(180deg);
-        }
 </style>
 
 <div class="search-hero">
@@ -237,7 +213,9 @@
         <h1 class="search-title">Tra cứu địa điểm công tác</h1>
 
         <div class="search-card">
-            <form asp-action="Index" method="get">
+            <form asp-action="GetResults" method="get">
+
+
                 <!-- Departure Location -->
                 <div class="location-section">
                     <h3 class="location-title">
@@ -266,14 +244,7 @@
                     </div>
                 </div>
 
-                <!-- Swap Button -->
-                <div class="position-relative">
-                    <div class="swap-icon" onclick="swapLocations()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M6.99 11L3 15L6.99 19V16H14V14H6.99V11ZM21 9L17.01 5V8H10V10H17.01V13L21 9Z" />
-                        </svg>
-                    </div>
-                </div>
+
 
                 <!-- Destination Location -->
                 <div class="location-section">
@@ -309,7 +280,10 @@
                         <div class="form-group">
                             <label class="form-label">Ngày đi</label>
                             <input type="date" class="form-control" name="DepartureDate"
-                                   value="@(Model?.DepartureDate.ToString("yyyy-MM-dd") ?? "")" required />
+                                   value="@(Model?.DepartureDate != default(DateTime)
+                                                   ? Model.DepartureDate.ToString("yyyy-MM-dd")
+                                                   : DateTime.Now.ToString("yyyy-MM-dd"))"
+                                   required />
                         </div>
                     </div>
                 </div>
@@ -368,139 +342,138 @@
     </div>
 </div>
 
-@if (Model != null)
-{
-    <div class="container results-section">
-        <h2 class="text-center mb-4" style="color: #05203C; font-weight: 700;">Kết quả tra cứu</h2>
-
-        @if (Model.Options.IncludeDistance)
-        {
-            <div class="result-card">
-                <h4 class="result-title">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#0066cc">
-                        <path d="M21 3L3 10.5L9 13.5L12 19.5L21 3Z" />
-                    </svg>
-                    Khoảng cách
-                </h4>
-                @await Component.InvokeAsync("DistanceResult", new { model = Model })
-            </div>
-        }
-
-        @if (Model.Options.IncludeTime)
-        {
-            <div class="result-card">
-                <h4 class="result-title">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#0066cc">
-                        <path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M12 7V12L16 14L17 12L13.5 10.5V7H12Z" />
-                    </svg>
-                    Thời gian
-                </h4>
-                @await Component.InvokeAsync("TimeResult", new { model = Model })
-            </div>
-        }
-
-        @if (Model.Options.IncludeWeather)
-        {
-            <div class="result-card">
-                <h4 class="result-title">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#0066cc">
-                        <path d="M6.5 20Q4.22 20 2.61 18.43Q1 16.85 1 14.58Q1 12.63 2.17 11.1Q3.35 9.57 5.25 9.15Q5.88 6.85 7.75 5.43Q9.63 4 12 4Q14.93 4 16.96 6.04Q19 8.07 19 11Q20.73 11.2 21.86 12.5Q23 13.78 23 15.5Q23 17.38 21.69 18.69Q20.38 20 18.5 20H6.5Z" />
-                    </svg>
-                    Thời tiết
-                </h4>
-                @await Component.InvokeAsync("WeatherResult", new { model = Model })
-            </div>
-        }
-
-        @if (Model.Options.IncludeCurrency)
-        {
-            <div class="result-card">
-                <h4 class="result-title">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#0066cc">
-                        <path d="M11.8 10.9C9.53 10.31 8.8 9.7 8.8 8.75C8.8 7.66 9.81 6.9 11.5 6.9C13.28 6.9 13.94 7.75 14 9H16.21C16.14 7.28 15.09 5.7 13 5.19V3H10V5.16C8.06 5.58 6.5 6.84 6.5 8.77C6.5 11.08 8.41 12.23 11.2 12.9C13.7 13.5 14.2 14.38 14.2 15.31C14.2 16 13.71 17.1 11.5 17.1C9.44 17.1 8.63 16.18 8.5 15H6.32C6.44 17.19 8.08 18.42 10 18.83V21H13V18.85C14.95 18.5 16.5 17.35 16.5 15.3C16.5 12.46 14.07 11.5 11.8 10.9Z" />
-                    </svg>
-                    Tiền tệ
-                </h4>
-                @await Component.InvokeAsync("CurrencyResult", new { model = Model })
-            </div>
-        }
-    </div>
-}
-
+<div id="results-placeholder"></div>
 @section Scripts {
     <script>
-        $(document).ready(function () {
-            var selectedOriginCountry = $("#originCountry").data("selected");
-            var selectedOriginSubdivision = $("#originSubdivision").data("selected");
-            var selectedDestCountry = $("#destinationCountry").data("selected");
-            var selectedDestSubdivision = $("#destinationSubdivision").data("selected");
+		 $(document).ready(function () {
+			var selectedOriginCountry = $("#originCountry").data("selected");
+			var selectedOriginSubdivision = $("#originSubdivision").data("selected");
+			var selectedDestCountry = $("#destinationCountry").data("selected");
+			var selectedDestSubdivision = $("#destinationSubdivision").data("selected");
 
-            $.getJSON("/home/countries", function (data) {
-                var $origin = $("#originCountry");
-                var $dest = $("#destinationCountry");
+			// Load countries
+			$.getJSON("/home/countries", function (data) {
+				var $origin = $("#originCountry");
+				var $dest = $("#destinationCountry");
 
-                $origin.empty().append('<option value="">-- Chọn quốc gia --</option>');
-                $dest.empty().append('<option value="">-- Chọn quốc gia --</option>');
+				$origin.empty().append('<option value="">-- Chọn quốc gia --</option>');
+				$dest.empty().append('<option value="">-- Chọn quốc gia --</option>');
 
-                $.each(data.geonames, function (i, c) {
-                    var originSelected = (c.geonameId == selectedOriginCountry) ? "selected" : "";
-                    var destSelected = (c.geonameId == selectedDestCountry) ? "selected" : "";
+				$.each(data.geonames, function (i, c) {
+					var originSelected = (c.geonameId == selectedOriginCountry) ? "selected" : "";
+					var destSelected = (c.geonameId == selectedDestCountry) ? "selected" : "";
 
-                    $origin.append(`<option value="${c.geonameId}" ${originSelected}>${c.countryName}</option>`);
-                    $dest.append(`<option value="${c.geonameId}" ${destSelected}>${c.countryName}</option>`);
-                });
+					$origin.append(`<option value="${c.geonameId}" ${originSelected}>${c.countryName}</option>`);
+					$dest.append(`<option value="${c.geonameId}" ${destSelected}>${c.countryName}</option>`);
+				});
 
-                if (selectedOriginCountry) $origin.trigger('change');
-                if (selectedDestCountry) $dest.trigger('change');
-            });
+				if (selectedOriginCountry) $origin.trigger('change');
+				if (selectedDestCountry) $dest.trigger('change');
+			});
 
-            $("#originCountry").change(function () {
-                var geonameId = $(this).val();
-                var $sub = $("#originSubdivision");
-                $sub.empty().append('<option value="">-- Chọn tỉnh/bang --</option>');
+			// Origin country change
+			$("#originCountry").change(function () {
+				var geonameId = $(this).val();
+				var $sub = $("#originSubdivision");
+				$sub.empty().append('<option value="">-- Chọn tỉnh/bang --</option>');
 
-                if (geonameId) {
-                    $.getJSON("/home/subdivisions/" + geonameId, function (data) {
-                        $.each(data.geonames, function (i, s) {
-                            var selected = (s.geonameId == selectedOriginSubdivision) ? "selected" : "";
-                            $sub.append(`<option value="${s.geonameId}" ${selected}>${s.name}</option>`);
-                        });
-                    });
-                }
-            });
+				if (geonameId) {
+					$.getJSON("/home/subdivisions/" + geonameId, function (data) {
+						$.each(data.geonames, function (i, s) {
+							var selected = (s.geonameId == selectedOriginSubdivision) ? "selected" : "";
+							$sub.append(`<option value="${s.geonameId}" ${selected}>${s.name}</option>`);
+						});
+					});
+				}
+			});
 
-            $("#destinationCountry").change(function () {
-                var geonameId = $(this).val();
-                var $sub = $("#destinationSubdivision");
-                $sub.empty().append('<option value="">-- Chọn tỉnh/bang --</option>');
+		
+			$("#destinationCountry").change(function () {
+				var geonameId = $(this).val();
+				var $sub = $("#destinationSubdivision");
+				$sub.empty().append('<option value="">-- Chọn tỉnh/bang --</option>');
 
-                if (geonameId) {
-                    $.getJSON("/home/subdivisions/" + geonameId, function (data) {
-                        $.each(data.geonames, function (i, s) {
-                            var selected = (s.geonameId == selectedDestSubdivision) ? "selected" : "";
-                            $sub.append(`<option value="${s.geonameId}" ${selected}>${s.name}</option>`);
-                        });
-                    });
-                }
-            });
-        });
+				if (geonameId) {
+					$.getJSON("/home/subdivisions/" + geonameId, function (data) {
+						$.each(data.geonames, function (i, s) {
+							var selected = (s.geonameId == selectedDestSubdivision) ? "selected" : "";
+							$sub.append(`<option value="${s.geonameId}" ${selected}>${s.name}</option>`);
+						});
+					});
+				}
+			});
 
-        function swapLocations() {
-            // Get current values
-            var originCountry = $("#originCountry").val();
-            var originSubdivision = $("#originSubdivision").val();
-            var destCountry = $("#destinationCountry").val();
-            var destSubdivision = $("#destinationSubdivision").val();
+			
+			$('form').on('submit', function(e) {
+				e.preventDefault();
 
-            // Swap the values  
-            $("#originCountry").val(destCountry).trigger('change');
-            $("#destinationCountry").val(originCountry).trigger('change');
+				console.log('Form submitted via AJAX');
 
-            // Small delay to allow for the subdivision dropdowns to populate
-            setTimeout(function() {
-                $("#originSubdivision").val(destSubdivision);
-                $("#destinationSubdivision").val(originSubdivision);
-            }, 500);
-        }
+				var $btn = $('.search-btn');
+				var originalHtml = $btn.html();
+				var $resultsContainer = $('#results-placeholder');
+
+				
+				$('#originLat, #originLng, #destLat, #destLng').remove();
+
+			
+				$btn.prop('disabled', true).html('🔄 Đang tìm kiếm...');
+
+				
+				$resultsContainer.html(`
+					<div class="container" style="margin-top: 3rem; padding: 2rem;">
+						<div class="text-center py-5">
+							<div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+								<span class="visually-hidden">Loading...</span>
+							</div>
+							<p class="mt-3 text-muted" style="font-size: 1.1rem;">⏳ Đang tra cứu thông tin...</p>
+						</div>
+					</div>
+				`);
+
+				
+				var formData = $(this).serialize();
+				console.log('Form data:', formData);
+
+				// AJAX call
+				$.ajax({
+					url: '@Url.Action("GetResults", "LookUpWorkLocation")',
+					type: 'GET',
+					data: formData,
+					success: function(html) {
+						console.log('✅ Results loaded successfully');
+						$resultsContainer.html(html);
+
+						// Smooth scroll to results
+						$('html, body').animate({
+							scrollTop: $resultsContainer.offset().top - 20
+						}, 600);
+					},
+					error: function(xhr, status, error) {
+						console.error('❌ Error:', error);
+						console.error('Response:', xhr.responseText);
+
+						$resultsContainer.html(`
+							<div class="container" style="margin-top: 3rem; padding: 2rem;">
+								<div class="alert alert-danger text-center">
+									<h4>❌ Có lỗi xảy ra!</h4>
+									<p><strong>Status:</strong> ${status}</p>
+									<p><strong>Error:</strong> ${error}</p>
+									<pre style="text-align: left; background: #f8f9fa; padding: 1rem; border-radius: 8px; max-height: 300px; overflow: auto;">${xhr.responseText}</pre>
+								</div>
+							</div>
+						`);
+					},
+					complete: function() {
+					
+						$btn.prop('disabled', false).html(originalHtml);
+					}
+				});
+			});
+		});
+
+
+
+
     </script>
 }

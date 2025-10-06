@@ -15,5 +15,6 @@
 
 
         public string Provider { get; set; } = string.Empty;
+        public bool IsReversed { get; set; }
     }
 }

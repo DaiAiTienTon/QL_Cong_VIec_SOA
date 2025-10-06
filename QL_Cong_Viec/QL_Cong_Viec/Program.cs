@@ -86,7 +86,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-// Build the application
 var app = builder.Build();
 
 app.UseResponseCompression();
@@ -146,7 +145,7 @@ app.MapGet("/esb/services", (IServiceRegistry serviceRegistry) =>
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Flights}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 

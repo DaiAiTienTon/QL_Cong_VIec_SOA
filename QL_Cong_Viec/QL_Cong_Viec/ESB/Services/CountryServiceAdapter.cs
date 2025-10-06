@@ -77,7 +77,70 @@ namespace QL_Cong_Viec.ESB.Services
                             Data = coords,
                             ErrorMessage = coords == null ? "Coordinates not found" : null
                         };
+                    case "getcurrencycode":
+                        if (!request.Parameters.TryGetValue("countryId", out var countryIdObj) ||
+                            string.IsNullOrEmpty(countryIdObj?.ToString()))
+                        {
+                            return new ServiceResponse
+                            {
+                                RequestId = request.RequestId,
+                                Success = false,
+                                ErrorMessage = "Missing countryId parameter"
+                            };
+                        }
 
+                        var countryId = countryIdObj.ToString()!;
+                        var currencyCode = await _countryService.GetCurrencyCodeAsync(countryId);
+
+                        if (string.IsNullOrEmpty(currencyCode))
+                        {
+                            return new ServiceResponse
+                            {
+                                RequestId = request.RequestId,
+                                Success = false,
+                                ErrorMessage = "Currency code not found for country"
+                            };
+                        }
+
+                        return new ServiceResponse
+                        {
+                            RequestId = request.RequestId,
+                            Success = true,
+                            Data = currencyCode
+                        };
+
+
+                    case "getcountrydetail":
+                        if (!request.Parameters.TryGetValue("countryId", out var detailCountryIdObj) ||
+                            string.IsNullOrEmpty(detailCountryIdObj?.ToString()))
+                        {
+                            return new ServiceResponse
+                            {
+                                RequestId = request.RequestId,
+                                Success = false,
+                                ErrorMessage = "Missing countryId parameter"
+                            };
+                        }
+
+                        var detailCountryId = detailCountryIdObj.ToString()!;
+                        var countryDetail = await _countryService.GetCountryDetailAsync(detailCountryId);
+
+                        if (countryDetail == null)
+                        {
+                            return new ServiceResponse
+                            {
+                                RequestId = request.RequestId,
+                                Success = false,
+                                ErrorMessage = "Country detail not found"
+                            };
+                        }
+
+                        return new ServiceResponse
+                        {
+                            RequestId = request.RequestId,
+                            Success = true,
+                            Data = countryDetail
+                        };
                     default:
                         return new ServiceResponse
                         {
