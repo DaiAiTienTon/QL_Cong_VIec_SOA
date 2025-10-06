@@ -1,0 +1,44 @@
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+*.vspscc
+*.vssscc
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Rider / VSCode
+.idea/
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Others
+*.DS_Store
+*.swp
+*.tmp
+*.bak
+*.dbmdl
+*.dbproj.schemaview

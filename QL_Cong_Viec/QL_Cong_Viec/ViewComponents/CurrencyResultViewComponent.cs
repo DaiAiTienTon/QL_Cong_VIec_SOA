@@ -1,125 +1,124 @@
-﻿
-using System.Globalization;
-
+﻿using System.Globalization;
 using System.Text.Json;
-
 using Microsoft.AspNetCore.Mvc;
+using QL_Cong_Viec.ESB.Interface;
+using QL_Cong_Viec.ESB.Models;
 using QL_Cong_Viec.Models;
 
-namespace QL_Cong_Viec.ViewComponents
+public class CurrencyResultViewComponent : ViewComponent
 {
-    public class CurrencyResultViewComponent : ViewComponent
+    private readonly IServiceRegistry _serviceRegistry;
+
+    public CurrencyResultViewComponent(IServiceRegistry serviceRegistry)
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        _serviceRegistry = serviceRegistry;
+    }
 
-        public CurrencyResultViewComponent(IHttpClientFactory httpClientFactory)
+
+    public async Task<IViewComponentResult> InvokeAsync(string fromCountryId, string toCountryId)
+    {
+        try
         {
-            _httpClientFactory = httpClientFactory;
+
+            var fromCurrency = await GetCurrencyCodeThroughESB(fromCountryId);
+            var toCurrency = await GetCurrencyCodeThroughESB(toCountryId);
+
+            if (string.IsNullOrEmpty(fromCurrency) || string.IsNullOrEmpty(toCurrency))
+            {
+                return Content("Không tìm thấy mã tiền tệ cho quốc gia");
+            }
+
+
+            var currencyInfo = await GetExchangeRateThroughESB(fromCurrency, toCurrency);
+            if (currencyInfo == null)
+            {
+                return Content("Không thể lấy tỷ giá hối đoái");
+            }
+
+            return View("Default", currencyInfo);
+        }
+        catch (Exception ex)
+        {
+            return Content($"Lỗi: {ex.Message}");
+        }
+    }
+
+    private async Task<string?> GetCurrencyCodeThroughESB(string countryId)
+    {
+        var countryService = _serviceRegistry.GetService("CountryService");
+        if (countryService == null)
+        {
+
+            return null;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(SearchRequest model)
+        var request = new ServiceRequest
         {
-            if (model == null ||
-                string.IsNullOrEmpty(model.Origin?.Country) ||
-                string.IsNullOrEmpty(model.Destination?.Country))
+            RequestId = Guid.NewGuid().ToString(),
+            Operation = "getcurrencycode",
+            Parameters = new Dictionary<string, object>
             {
-                return Content("Chưa đủ dữ liệu để tra cứu tiền tệ");
+                { "countryId", countryId }
             }
+        };
 
-            var client = _httpClientFactory.CreateClient();
-
-            try
-            {
-
-                var fromCurrency = await GetCurrencyCode(client, model.Destination.Country); // theo logic: xuất phát -> dùng điểm đến làm 'from'
-                var toCurrency = await GetCurrencyCode(client, model.Origin.Country);
-
-                if (string.IsNullOrEmpty(fromCurrency) || string.IsNullOrEmpty(toCurrency))
-                {
-                    return Content("Không tìm thấy mã tiền tệ cho quốc gia");
-                }
+        var response = await countryService.HandleRequestAsync(request);
 
 
-                var url = $"https://localhost:7295/api/currency/convert?from={fromCurrency}&to={toCurrency}";
-                var json = await client.GetStringAsync(url);
+        return response.Success ? response.Data?.ToString() : null;
+    }
 
-                var info = ParseCurrencyInfo(json, fromCurrency, toCurrency);
+    private async Task<Currency?> GetExchangeRateThroughESB(string fromCurrency, string toCurrency)
+    {
+        var currencyService = _serviceRegistry.GetService("CurrencyService");
+        if (currencyService == null) return null;
 
-                if (info == null)
-                    return Content("Không đọc được dữ liệu tiền tệ");
-
-                return View("Default", info);
-            }
-            catch (HttpRequestException ex)
-            {
-                return Content($"Lỗi kết nối API: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                return Content($"Lỗi không xác định: {ex.Message}");
-            }
+        var request = new ServiceRequest
+        {
+            RequestId = Guid.NewGuid().ToString(),
+            Operation = "convert",
+            Parameters = new Dictionary<string, object>
+        {
+            { "from", fromCurrency },
+            { "to", toCurrency }
         }
+        };
 
-        private async Task<string?> GetCurrencyCode(HttpClient client, string countryId)
+        var response = await currencyService.HandleRequestAsync(request);
+        if (!response.Success || response.Data == null) return null;
+
+        try
         {
-            try
+            dynamic data = response.Data;
+            double rate = (double)data.Rate;
+
+
+            bool isReversed = false;
+
+            if (rate < 0.01)
             {
-                var url = $"https://localhost:7002/api/countries";
-                var json = await client.GetStringAsync(url);
 
-                using var doc = JsonDocument.Parse(json);
-                if (!doc.RootElement.TryGetProperty("geonames", out var arr))
-                    return null;
-
-                foreach (var item in arr.EnumerateArray())
-                {
-                    if (item.TryGetProperty("geonameId", out var gIdProp) &&
-                        gIdProp.GetRawText().Trim('"') == countryId)
-                    {
-                        if (item.TryGetProperty("currencyCode", out var ccProp))
-                            return ccProp.GetString();
-                    }
-                }
-
-                return null;
+                rate = 1.0 / rate;
+                isReversed = true;
+                Console.WriteLine($"💱 Rate too small, reversed: {rate}");
             }
-            catch
+
+            return new Currency
             {
-                return null;
-            }
+                From = isReversed ? (string)data.To : (string)data.From,
+                To = isReversed ? (string)data.From : (string)data.To,
+                Rate = rate,
+                Date = DateTime.TryParse((string)data.Date, CultureInfo.InvariantCulture,
+                                       DateTimeStyles.AdjustToUniversal, out var parsedDate)
+                       ? parsedDate : DateTime.UtcNow,
+                Provider = "CurrencyFreaks",
+                IsReversed = isReversed
+            };
         }
-
-        private CurrencyInfo? ParseCurrencyInfo(string json, string from, string to)
+        catch (Exception ex)
         {
-            try
-            {
-                using var doc = JsonDocument.Parse(json);
-                var root = doc.RootElement;
 
-                if (!root.TryGetProperty("rate", out var rateProp))
-                    return null;
-
-                var rate = rateProp.GetDouble();
-
-                DateTime date = DateTime.UtcNow;
-                if (root.TryGetProperty("date", out var dateProp))
-                {
-                    DateTime.TryParse(dateProp.GetString(), CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date);
-                }
-
-                return new CurrencyInfo
-                {
-                    From = from,
-                    To = to,
-                    Rate = rate,
-                    Date = date,
-                    Provider = "CurrencyFreaks"
-                };
-            }
-            catch
-            {
-                return null;
-            }
+            return null;
         }
     }
 }

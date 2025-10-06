@@ -1,0 +1,87 @@
+﻿@model List<QL_Cong_Viec.Models.FlightDto>
+
+@{
+    ViewData["Title"] = "Tìm kiếm chuyến bay";
+}
+<div class="ocean-bg"></div>
+<div class="wave-overlay"></div>
+
+<div class="bottomheader">
+    <form class="main-content" asp-action="Search" asp-controller="Flights" method="get">
+        <h1 class="hero-title">
+            Vé máy bay giá rẻ nhất đi muôn nơi
+        </h1>
+        <div class="search-container">
+            <div class="search-form">
+                <!-- From -->
+                <div class="search-input from-input">
+                    <label class="input-label" for="from">Từ</label>
+                    <input id="from"
+                           value="@ViewData["from"]"
+                           type="text"
+                           placeholder="Việt Nam (VN)"
+                           required
+                           />
+                    <input type="hidden" id="fromIata" name="from" />
+                    <ul id="from-suggestions" class="suggestions"></ul>
+                </div>
+
+                <!-- To -->
+                <div class="search-input">
+                    <label class="input-label" for="to">Đến</label>
+                    <input id="to"
+                           value="@ViewData["to"]"
+                           type="text"
+                           placeholder="Quốc gia, thành phố hoặc sân bay"
+                           required
+                           />
+                    <input type="hidden" id="toIata" name="to" />
+                    <ul id="to-suggestions" class="suggestions"></ul>
+                </div>
+
+                <!-- Depart -->
+                <div class="search-input">
+                    <label class="input-label" for="depart">Ngày đi</label>
+                    <input id="depart"
+                           name="date"
+                           type="date"
+                           value="@DateTime.Now.ToString("yyyy-MM-dd")"
+                           required />
+                </div>
+
+                <!-- Return -->
+                <div class="search-input">
+                    <label class="input-label" for="return">Ngày về</label>
+                    <input id="return" name="returnDate" type="date" value="@DateTime.Now.AddDays(7).ToString("yyyy-MM-dd")" />
+                </div>
+
+                <!-- Submit -->
+                <div>
+                    <button class="search-btn" id="btnSearch" type="submit">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<main class="container">
+    <div class="contatner-header">
+        <h1 class="main-title">
+            Khám phá mọi nơi
+        </h1>
+    </div>
+
+    <div id="flights-container" class="destinations-grid">
+        @if (Model != null && Model.Any())
+        {
+            @await Html.PartialAsync("_FlightCardsPartial", Model)
+        }
+        else
+        {
+            <div class="no-data">
+                <p>Không có chuyến bay nào để hiển thị.</p>
+            </div>
+        }
+    </div>
+
+</main>
